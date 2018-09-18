@@ -1,12 +1,13 @@
 import { appSchema, tableSchema } from "@nozbe/watermelondb";
 
 export const todoSchema = appSchema({
-  version: 1,
+  version: 2,
   tables: [
     tableSchema({
       name: "post",
       columns: [
         { name: "title", type: "string" },
+        { name: "color", type: "string" },
         { name: "type", type: "string" },
         { name: "is_pinned", type: "bool" }
       ]
