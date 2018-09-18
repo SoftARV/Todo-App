@@ -1,12 +1,12 @@
 import React from "react";
 import { StyleSheet, FlatList } from "react-native";
-import Post from "./Post";
+import PostItem from "./PostItem";
 
 export default class List extends React.Component {
   _keyExtractor = (item, index) => item.name;
 
   _renderPost(post) {
-    return <Post {...post} />;
+    return <PostItem {...post} />;
   }
 
   render() {
@@ -23,9 +23,7 @@ export default class List extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 70,
-    paddingLeft: 16,
-    paddingRight: 16
+    paddingTop: 70
   }
 });
 
