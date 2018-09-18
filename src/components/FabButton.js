@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, TouchableOpacity, StyleSheet } from "react-native";
+import { Text, TouchableOpacity, StyleSheet, Dimensions } from "react-native";
 import { Icon } from "react-native-elements";
 
 export default class FabButton extends React.Component {
@@ -7,6 +7,7 @@ export default class FabButton extends React.Component {
     return (
       <TouchableOpacity style={styles.container}>
         <Icon size={add.size} name={add.name} color={add.color} />
+        <Text style={styles.text}>New Post</Text>
       </TouchableOpacity>
     );
   }
@@ -14,26 +15,25 @@ export default class FabButton extends React.Component {
 
 const add = {
   name: "add",
-  size: 50,
+  size: 40,
   color: "#fff"
 };
 
 const styles = StyleSheet.create({
   container: {
     height: 70,
-    width: 70,
+    width: Dimensions.get("screen").width,
     flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: "flex-start",
     position: "absolute",
-    bottom: 16,
-    right: 16,
-    backgroundColor: "#c2185b",
-    borderRadius: 40
+    bottom: 0,
+    backgroundColor: "#c2185b"
   },
   text: {
-    fontSize: 18,
+    // marginLeft: 10,
+    fontSize: 20,
     fontWeight: "bold",
-    color: "#fff"
+    color: "#fff",
+    alignSelf: "center"
   }
 });
