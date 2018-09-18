@@ -23,7 +23,8 @@ export default class List extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 70
+    marginTop: 70,
+    marginBottom: 70
   }
 });
 
