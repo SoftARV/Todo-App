@@ -1,35 +1,31 @@
 import React from "react";
 import { View, TextInput, StyleSheet, Dimensions } from "react-native";
 import { Icon } from "react-native-elements";
-import LinearGradient from "react-native-linear-gradient";
 
 export default class SearchBar extends React.Component {
   render() {
     return (
-      <LinearGradient style={styles.root} colors={["#000", "transparent"]}>
+      <View style={styles.root}>
         <View style={styles.container}>
-          <Icon name={search.name} size={search.size} color={search.color} />
+          <Icon name={search.name} size={search.size} />
           <TextInput
             style={styles.searchInput}
             placeholder={searchBar.placeholder}
-            placeholderTextColor={searchBar.placeholderTextColor}
             underlineColorAndroid={searchBar.underlineColorAndroid}
           />
         </View>
-      </LinearGradient>
+      </View>
     );
   }
 }
 
 const search = {
   name: "search",
-  size: 26,
-  color: "#fff9"
+  size: 26
 };
 
 const searchBar = {
   placeholder: "Search Posts...",
-  placeholderTextColor: "#fff6",
   underlineColorAndroid: "transparent"
 };
 
@@ -41,21 +37,14 @@ const styles = StyleSheet.create({
     top: 0
   },
   container: {
-    height: 50,
-    marginTop: 10,
-    marginBottom: 10,
-    marginLeft: 16,
-    marginRight: 16,
+    height: 70,
     paddingLeft: 10,
     paddingRight: 10,
     flexDirection: "row",
-    borderColor: "#fff9",
-    borderWidth: 2,
-    borderRadius: 20
+    backgroundColor: "#fff"
   },
   searchInput: {
-    color: "#fff",
     flex: 1,
-    fontSize: 16
+    fontSize: 20
   }
 });
