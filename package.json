@@ -17,10 +17,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.1.0",
-    "babel-cli": "^6.26.0",
     "babel-jest": "23.6.0",
-    "babel-preset-flow": "^6.23.0",
-    "flow-bin": "^0.81.0",
     "jest": "23.6.0",
     "metro-react-native-babel-preset": "0.45.3",
     "react-test-renderer": "16.5.0"
