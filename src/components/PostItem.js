@@ -19,7 +19,6 @@ export default class PostItem extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
     height: 70
   },
   title: {
@@ -28,7 +27,8 @@ const styles = StyleSheet.create({
     paddingLeft: 10
   },
   titleText: {
-    fontSize: 20,
-    fontWeight: "bold"
+    color: "#000",
+    fontSize: 22,
+    fontFamily: "Nunito Regular"
   }
 });

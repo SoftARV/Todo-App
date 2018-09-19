@@ -6,7 +6,6 @@ export default class FabButton extends React.Component {
   render() {
     return (
       <TouchableOpacity style={styles.container}>
-        <Icon size={add.size} name={add.name} color={add.color} />
         <Text style={styles.text}>New Post</Text>
       </TouchableOpacity>
     );
@@ -15,12 +14,13 @@ export default class FabButton extends React.Component {
 
 const add = {
   name: "add",
-  size: 40,
+  size: 35,
   color: "#fff"
 };
 
 const styles = StyleSheet.create({
   container: {
+    paddingLeft: 10,
     height: 70,
     width: Dimensions.get("screen").width,
     flexDirection: "row",
@@ -31,9 +31,9 @@ const styles = StyleSheet.create({
   },
   text: {
     // marginLeft: 10,
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: 22,
     color: "#fff",
-    alignSelf: "center"
+    alignSelf: "center",
+    fontFamily: "Nunito Regular"
   }
 });

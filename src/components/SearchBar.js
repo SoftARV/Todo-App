@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     flex: 1,
-    fontSize: 20
+    fontSize: 22,
+    fontFamily: "Nunito Regular"
   }
 });
