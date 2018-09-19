@@ -1,5 +1,6 @@
 import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import NavigationService from "../shared/NavigationService";
 
 export default class PostItem extends React.Component {
   render() {
@@ -7,6 +8,7 @@ export default class PostItem extends React.Component {
 
     return (
       <TouchableOpacity
+        onPress={() => NavigationService.navigate("Post", item)}
         style={[styles.container, { backgroundColor: item.color }]}
       >
         <View style={styles.title}>
@@ -19,7 +21,7 @@ export default class PostItem extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    height: 70
+    height: 60
   },
   title: {
     flex: 1,
@@ -29,6 +31,6 @@ const styles = StyleSheet.create({
   titleText: {
     color: "#000",
     fontSize: 22,
-    fontFamily: "Nunito Regular"
+    fontFamily: "Nunito"
   }
 });

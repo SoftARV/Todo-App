@@ -1,24 +1,37 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, TextInput } from "react-native";
 import { Icon } from "react-native-elements";
+import NavigationService from "./shared/NavigationService";
 
 export default class Post extends React.Component {
+  static navigationOptions = {
+    title: "Post",
+    header: null
+  };
+
   render() {
-    const { item } = this.props;
+    const { color, dark, name } = this.props.navigation.state.params;
 
     return (
-      <View style={[styles.container, { backgroundColor: item.color }]}>
+      <View style={[styles.container, { backgroundColor: color }]}>
         <View style={styles.header}>
+          <TouchableOpacity
+            onPress={() => NavigationService.goBack()}
+            style={styles.button}
+          >
+            <Icon size={add.size} name={"chevron-left"} color={dark} />
+          </TouchableOpacity>
           <View style={styles.title}>
             <TextInput
               style={[styles.titleInput]}
               placeholder={headerInput.placeholder}
               underlineColorAndroid={headerInput.underlineColorAndroid}
               placeholderTextColor={headerInput.placeholderTextColor}
+              value={name}
             />
           </View>
           <TouchableOpacity style={styles.button}>
-            <Icon size={add.size} name={add.name} color={item.dark} />
+            <Icon size={add.size} name={add.name} color={dark} />
           </TouchableOpacity>
         </View>
         <View>
@@ -32,10 +45,10 @@ export default class Post extends React.Component {
               />
             </View>
             <TouchableOpacity style={styles.button}>
-              <Icon size={check.size} name={check.name} color={item.dark} />
+              <Icon size={check.size} name={check.name} color={dark} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}>
-              <Icon size={edit.size} name={edit.name} color={item.dark} />
+              <Icon size={edit.size} name={edit.name} color={dark} />
             </TouchableOpacity>
           </View>
         </View>
@@ -75,6 +88,7 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   header: {
     flexDirection: "row",
+    justifyContent: "center",
     backgroundColor: "rgba(0, 0, 0, 0.1)"
   },
   section: {
@@ -88,13 +102,12 @@ const styles = StyleSheet.create({
   },
   titleInput: {
     height: 50,
-    fontSize: 20,
-    fontWeight: "bold"
+    fontSize: 22,
+    fontFamily: "Nunito"
   },
   button: {
     justifyContent: "center",
     alignItems: "center",
-    height: 50,
     width: 50
   },
   task: {
@@ -105,6 +118,7 @@ const styles = StyleSheet.create({
   },
   taskInput: {
     minHeight: 50,
-    fontSize: 16
+    fontSize: 18,
+    fontFamily: "Nunito"
   }
 });
