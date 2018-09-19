@@ -7,7 +7,7 @@ export default class Post extends React.Component {
     const { item } = this.props;
 
     return (
-      <View style={[styles.card, { backgroundColor: item.color }]}>
+      <View style={[styles.container, { backgroundColor: item.color }]}>
         <View style={styles.header}>
           <View style={styles.title}>
             <TextInput
@@ -72,12 +72,7 @@ const taskInput = {
 };
 
 const styles = StyleSheet.create({
-  card: {
-    minHeight: 300,
-    borderRadius: 2,
-    marginTop: 10,
-    marginBottom: 10
-  },
+  container: { flex: 1 },
   header: {
     flexDirection: "row",
     backgroundColor: "rgba(0, 0, 0, 0.1)"
@@ -87,7 +82,7 @@ const styles = StyleSheet.create({
   },
   title: {
     flex: 1,
-    height: 50,
+    height: 70,
     justifyContent: "center",
     paddingLeft: 10
   },

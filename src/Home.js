@@ -5,6 +5,11 @@ import List from "./components/List";
 import FabButton from "./components/FabButton";
 
 export default class Home extends Component {
+  static navigationOptions = {
+    title: "Home",
+    header: null
+  };
+
   render() {
     return (
       <View style={styles.container}>
