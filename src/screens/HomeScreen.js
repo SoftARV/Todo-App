@@ -20,6 +20,8 @@ export default class HomeScreen extends Component {
           <List />
           <FabButton
             onFabPressed={() => NavigationService.navigate("NewPostScreen")}
+            text={"New Post"}
+            color={"#c2185b"}
           />
         </View>
       </DismissKeyboard>

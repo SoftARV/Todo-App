@@ -4,15 +4,15 @@ import { getBottomSpace } from "react-native-iphone-x-helper";
 
 export default class FabButton extends React.Component {
   render() {
-    const { onFabPressed } = this.props;
+    const { onFabPressed, text, color } = this.props;
 
     return (
-      <View style={styles.root}>
+      <View style={[styles.root, { backgroundColor: color }]}>
         <TouchableOpacity
           onPress={onFabPressed.bind(this)}
           style={styles.container}
         >
-          <Text style={styles.text}>New Post</Text>
+          <Text style={styles.text}>{text}</Text>
         </TouchableOpacity>
       </View>
     );
@@ -20,13 +20,9 @@ export default class FabButton extends React.Component {
 }
 
 FabButton.defaultProps = {
-  onFabPressed: () => {}
-};
-
-const add = {
-  name: "add",
-  size: 35,
-  color: "#fff"
+  onFabPressed: () => {},
+  text: "",
+  color: "#ccc"
 };
 
 const styles = StyleSheet.create({
@@ -35,10 +31,7 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     justifyContent: "flex-start",
-    alignItems: "center",
-    position: "absolute",
-    bottom: 0,
-    backgroundColor: "#c2185b"
+    alignItems: "center"
   },
   container: {
     paddingLeft: 10,
