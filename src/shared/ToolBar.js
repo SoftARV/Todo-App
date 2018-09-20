@@ -8,14 +8,14 @@ export default class ToolBar extends React.Component {
   componentDidMount() {
     StatusBarSizeIOS.addEventListener(
       "didChange",
-      this._handleStatusBarSizeDidChange
+      this._handleStatusBarSizeDidChange.bind(this)
     );
   }
 
   componentWillUnmount() {
     StatusBarSizeIOS.removeEventListener(
       "didChange",
-      this._handleStatusBarSizeDidChange
+      this._handleStatusBarSizeDidChange.bind(this)
     );
   }
 
@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     flexDirection: "row",
-    justifyContent: "center"
+    justifyContent: "center",
+    alignItems: "center"
   }
 });
