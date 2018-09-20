@@ -3,6 +3,7 @@ import { Easing, Animated, Platform } from "react-native";
 import { createStackNavigator } from "react-navigation";
 import HomeScreen from "./screens/HomeScreen";
 import PostScreen from "./screens/PostScreen";
+import NewPostScreen from "./screens/NewPostScreen";
 import NavigationService from "./shared/NavigationService";
 
 const transitionConfig = () => {
@@ -35,7 +36,8 @@ const transitionConfig = () => {
 const RootStack = createStackNavigator(
   {
     HomeScreen,
-    PostScreen
+    PostScreen,
+    NewPostScreen
   },
   {
     initialRouteName: "HomeScreen",
