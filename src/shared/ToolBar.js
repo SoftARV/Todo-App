@@ -5,10 +5,6 @@ import StatusBarSizeIOS from "react-native-status-bar-size";
 export default class ToolBar extends React.Component {
   state = { currentStatusBarHeight: StatusBarSizeIOS.currentHeight };
 
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     StatusBarSizeIOS.addEventListener(
       "didChange",

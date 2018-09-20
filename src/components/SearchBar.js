@@ -1,5 +1,5 @@
 import React from "react";
-import { View, TextInput, StyleSheet, Platform } from "react-native";
+import { TextInput, StyleSheet } from "react-native";
 import { Icon } from "react-native-elements";
 import ToolBar from "../shared/ToolBar";
 
