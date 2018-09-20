@@ -3,6 +3,7 @@ import { View, StyleSheet, TouchableOpacity, TextInput } from "react-native";
 import { Icon } from "react-native-elements";
 import NavigationService from "./shared/NavigationService";
 import ToolBar from "./shared/ToolBar";
+import DismissKeyboard from "./shared/DismissKeyboard";
 
 export default class Post extends React.Component {
   static navigationOptions = {
@@ -14,44 +15,46 @@ export default class Post extends React.Component {
     const { color, dark, name } = this.props.navigation.state.params;
 
     return (
-      <View style={[styles.container, { backgroundColor: color }]}>
-        <ToolBar color={color}>
-          <TouchableOpacity
-            onPress={() => NavigationService.goBack()}
-            style={styles.button}
-          >
-            <Icon size={add.size} name={"chevron-left"} color={dark} />
-          </TouchableOpacity>
-          <TextInput
-            style={[styles.titleInput]}
-            placeholder={headerInput.placeholder}
-            underlineColorAndroid={headerInput.underlineColorAndroid}
-            placeholderTextColor={headerInput.placeholderTextColor}
-            value={name}
-          />
-          <TouchableOpacity style={styles.button}>
-            <Icon size={add.size} name={add.name} color={dark} />
-          </TouchableOpacity>
-        </ToolBar>
-        <View>
-          <View style={styles.section}>
-            <View style={styles.task}>
-              <TextInput
-                style={styles.taskInput}
-                placeholder={taskInput.placeholder}
-                underlineColorAndroid={taskInput.underlineColorAndroid}
-                placeholderTextColor={taskInput.placeholderTextColor}
-              />
+      <DismissKeyboard>
+        <View style={[styles.container, { backgroundColor: color }]}>
+          <ToolBar color={color}>
+            <TouchableOpacity
+              onPress={() => NavigationService.goBack()}
+              style={styles.button}
+            >
+              <Icon size={add.size} name={"chevron-left"} color={dark} />
+            </TouchableOpacity>
+            <TextInput
+              style={[styles.titleInput]}
+              placeholder={headerInput.placeholder}
+              underlineColorAndroid={headerInput.underlineColorAndroid}
+              placeholderTextColor={headerInput.placeholderTextColor}
+              value={name}
+            />
+            <TouchableOpacity style={styles.button}>
+              <Icon size={add.size} name={add.name} color={dark} />
+            </TouchableOpacity>
+          </ToolBar>
+          <View>
+            <View style={styles.section}>
+              <View style={styles.task}>
+                <TextInput
+                  style={styles.taskInput}
+                  placeholder={taskInput.placeholder}
+                  underlineColorAndroid={taskInput.underlineColorAndroid}
+                  placeholderTextColor={taskInput.placeholderTextColor}
+                />
+              </View>
+              <TouchableOpacity style={styles.button}>
+                <Icon size={check.size} name={check.name} color={dark} />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.button}>
+                <Icon size={edit.size} name={edit.name} color={dark} />
+              </TouchableOpacity>
             </View>
-            <TouchableOpacity style={styles.button}>
-              <Icon size={check.size} name={check.name} color={dark} />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
-              <Icon size={edit.size} name={edit.name} color={dark} />
-            </TouchableOpacity>
           </View>
         </View>
-      </View>
+      </DismissKeyboard>
     );
   }
 }
