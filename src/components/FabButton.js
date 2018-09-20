@@ -21,7 +21,7 @@ const add = {
 const styles = StyleSheet.create({
   container: {
     paddingLeft: 10,
-    height: 70,
+    height: 60,
     width: Dimensions.get("screen").width,
     flexDirection: "row",
     justifyContent: "flex-start",
@@ -34,6 +34,6 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: "#fff",
     alignSelf: "center",
-    fontFamily: "Nunito Regular"
+    fontFamily: "Nunito"
   }
 });

@@ -8,7 +8,7 @@ import NavigationService from "./shared/NavigationService";
 const transitionConfig = () => {
   return {
     transitionSpec: {
-      duration: 300,
+      duration: 400,
       easing: Easing.out(Easing.poly(4)),
       timing: Animated.timing,
       useNativeDriver: true
