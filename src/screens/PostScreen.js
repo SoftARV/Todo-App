@@ -1,11 +1,11 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, TextInput } from "react-native";
 import { Icon } from "react-native-elements";
-import NavigationService from "./shared/NavigationService";
-import ToolBar from "./shared/ToolBar";
-import DismissKeyboard from "./shared/DismissKeyboard";
+import NavigationService from "../shared/NavigationService";
+import ToolBar from "../shared/ToolBar";
+import DismissKeyboard from "../shared/DismissKeyboard";
 
-export default class Post extends React.Component {
+export default class PostScreen extends React.Component {
   static navigationOptions = {
     title: "Post",
     header: null

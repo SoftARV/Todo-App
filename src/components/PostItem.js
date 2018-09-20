@@ -8,7 +8,7 @@ export default class PostItem extends React.Component {
 
     return (
       <TouchableOpacity
-        onPress={() => NavigationService.navigate("Post", item)}
+        onPress={() => NavigationService.navigate("PostScreen", item)}
         style={[styles.container, { backgroundColor: item.color }]}
       >
         <View style={styles.title}>

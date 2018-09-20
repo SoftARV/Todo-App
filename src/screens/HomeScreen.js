@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
-import SearchBar from "./components/SearchBar";
-import List from "./components/List";
-import FabButton from "./components/FabButton";
+import SearchBar from "../components/SearchBar";
+import List from "../components/List";
+import FabButton from "../components/FabButton";
 
-export default class Home extends Component {
+export default class HomeScreen extends Component {
   static navigationOptions = {
     title: "Home",
     header: null
