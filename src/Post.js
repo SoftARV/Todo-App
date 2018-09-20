@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet, TouchableOpacity, TextInput } from "react-native";
 import { Icon } from "react-native-elements";
 import NavigationService from "./shared/NavigationService";
+import ToolBar from "./shared/ToolBar";
 
 export default class Post extends React.Component {
   static navigationOptions = {
@@ -14,26 +15,24 @@ export default class Post extends React.Component {
 
     return (
       <View style={[styles.container, { backgroundColor: color }]}>
-        <View style={styles.header}>
+        <ToolBar color={color}>
           <TouchableOpacity
             onPress={() => NavigationService.goBack()}
             style={styles.button}
           >
             <Icon size={add.size} name={"chevron-left"} color={dark} />
           </TouchableOpacity>
-          <View style={styles.title}>
-            <TextInput
-              style={[styles.titleInput]}
-              placeholder={headerInput.placeholder}
-              underlineColorAndroid={headerInput.underlineColorAndroid}
-              placeholderTextColor={headerInput.placeholderTextColor}
-              value={name}
-            />
-          </View>
+          <TextInput
+            style={[styles.titleInput]}
+            placeholder={headerInput.placeholder}
+            underlineColorAndroid={headerInput.underlineColorAndroid}
+            placeholderTextColor={headerInput.placeholderTextColor}
+            value={name}
+          />
           <TouchableOpacity style={styles.button}>
             <Icon size={add.size} name={add.name} color={dark} />
           </TouchableOpacity>
-        </View>
+        </ToolBar>
         <View>
           <View style={styles.section}>
             <View style={styles.task}>
@@ -94,21 +93,15 @@ const styles = StyleSheet.create({
   section: {
     flexDirection: "row"
   },
-  title: {
-    flex: 1,
-    height: 70,
-    justifyContent: "center",
-    paddingLeft: 10
-  },
   titleInput: {
-    height: 50,
+    flex: 1,
+    height: 60,
     fontSize: 22,
     fontFamily: "Nunito"
   },
   button: {
     justifyContent: "center",
-    alignItems: "center",
-    width: 50
+    alignItems: "center"
   },
   task: {
     flex: 1,
