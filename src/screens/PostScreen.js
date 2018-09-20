@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, TextInput } from "react-native";
 import { Icon } from "react-native-elements";
+import { getBottomSpace } from "react-native-iphone-x-helper";
 import NavigationService from "../shared/NavigationService";
 import ToolBar from "../shared/ToolBar";
 import DismissKeyboard from "../shared/DismissKeyboard";
@@ -87,7 +88,10 @@ const taskInput = {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
+  container: {
+    flex: 1,
+    paddingBottom: getBottomSpace()
+  },
   header: {
     flexDirection: "row",
     justifyContent: "center",

@@ -28,9 +28,7 @@ export default class List extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    marginBottom: 60
-  }
+  container: {}
 });
 
 const posts = [
