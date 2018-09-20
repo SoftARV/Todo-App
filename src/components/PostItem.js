@@ -4,20 +4,28 @@ import NavigationService from "../shared/NavigationService";
 
 export default class PostItem extends React.Component {
   render() {
-    const { item } = this.props;
+    const { color, name } = this.props.post;
 
     return (
       <TouchableOpacity
-        onPress={() => NavigationService.navigate("PostScreen", item)}
-        style={[styles.container, { backgroundColor: item.color }]}
+        onPress={this.props.onItemPress.bind(this)}
+        style={[styles.container, { backgroundColor: color }]}
       >
         <View style={styles.title}>
-          <Text style={[styles.titleText]}>{item.name}</Text>
+          <Text style={[styles.titleText]}>{name}</Text>
         </View>
       </TouchableOpacity>
     );
   }
 }
+
+PostItem.defaultProps = {
+  post: {
+    name: "",
+    color: "#fff"
+  },
+  onItemPress: () => {}
+};
 
 const styles = StyleSheet.create({
   container: {

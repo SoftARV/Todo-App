@@ -1,12 +1,18 @@
 import React from "react";
 import { StyleSheet, FlatList } from "react-native";
 import PostItem from "./PostItem";
+import NavigationService from "../shared/NavigationService";
 
 export default class List extends React.Component {
   _keyExtractor = (item, index) => item.name;
 
   _renderPost(post) {
-    return <PostItem {...post} />;
+    return (
+      <PostItem
+        post={post.item}
+        onItemPress={() => NavigationService.navigate("PostScreen", post.item)}
+      />
+    );
   }
 
   render() {

@@ -3,6 +3,8 @@ import { StyleSheet, View } from "react-native";
 import SearchBar from "../components/SearchBar";
 import List from "../components/List";
 import FabButton from "../components/FabButton";
+import NavigationService from "../shared/NavigationService";
+import DismissKeyboard from "../shared/DismissKeyboard";
 
 export default class HomeScreen extends Component {
   static navigationOptions = {
@@ -12,11 +14,15 @@ export default class HomeScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <SearchBar />
-        <List />
-        <FabButton />
-      </View>
+      <DismissKeyboard>
+        <View style={styles.container}>
+          <SearchBar />
+          <List />
+          <FabButton
+            onFabPressed={() => NavigationService.navigate("NewPostScreen")}
+          />
+        </View>
+      </DismissKeyboard>
     );
   }
 }
