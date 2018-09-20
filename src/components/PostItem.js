@@ -1,6 +1,5 @@
 import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
-import NavigationService from "../shared/NavigationService";
 
 export default class PostItem extends React.Component {
   render() {

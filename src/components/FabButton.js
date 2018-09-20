@@ -7,11 +7,14 @@ export default class FabButton extends React.Component {
     const { onFabPressed } = this.props;
 
     return (
-      <TouchableOpacity onPress={onFabPressed.bind(this)} style={styles.root}>
-        <View style={styles.container}>
+      <View style={styles.root}>
+        <TouchableOpacity
+          onPress={onFabPressed.bind(this)}
+          style={styles.container}
+        >
           <Text style={styles.text}>New Post</Text>
-        </View>
-      </TouchableOpacity>
+        </TouchableOpacity>
+      </View>
     );
   }
 }
@@ -28,8 +31,6 @@ const add = {
 
 const styles = StyleSheet.create({
   root: {
-    paddingLeft: 10,
-    paddingRight: 10,
     paddingBottom: getBottomSpace(),
     width: "100%",
     flexDirection: "row",
@@ -40,6 +41,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#c2185b"
   },
   container: {
+    paddingLeft: 10,
+    paddingRight: 10,
     justifyContent: "center",
     flex: 1,
     height: 60
