@@ -34,32 +34,26 @@ const styles = StyleSheet.create({
 const posts = [
   {
     name: "Shot",
-    color: "#a9d0b6",
-    dark: "#6b8574"
+    color: "#a9d0b6"
   },
   {
     name: "Juice",
-    color: "#e9bbd1",
-    dark: "#9c7c8b"
+    color: "#e9bbd1"
   },
   {
     name: "Mighty Juice",
-    color: "#eba65c",
-    dark: "#9e6f3e"
+    color: "#eba65c"
   },
   {
     name: "Sandwich",
-    color: "#95c3e4",
-    dark: "#628196"
+    color: "#95c3e4"
   },
   {
     name: "Signature",
-    color: "#a390bc",
-    dark: "#625670"
+    color: "#a390bc"
   },
   {
     name: "Coffee",
-    color: "#fef2a0",
-    dark: "#b3aa70"
+    color: "#fef2a0"
   }
 ];

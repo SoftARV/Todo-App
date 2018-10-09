@@ -24,7 +24,7 @@ const search = {
 };
 
 const searchBar = {
-  placeholder: "Search Posts...",
+  placeholder: "Search...",
   underlineColorAndroid: "transparent"
 };
 

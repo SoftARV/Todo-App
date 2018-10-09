@@ -72,13 +72,6 @@ export default class NewPostScreen extends React.Component {
                 placeholder={"Color..."}
               />
             </View>
-            <View>
-              <Select
-                data={typeList}
-                onValueChange={this._typeSelected.bind(this)}
-                placeholder={"Type..."}
-              />
-            </View>
           </View>
           <FabButton
             onFabPressed={this._createPost}
@@ -122,8 +115,7 @@ const styles = StyleSheet.create({
     color: "#000"
   },
   body: {
-    flex: 1,
-    justifyContent: "center"
+    flex: 1
   },
   button: {
     height: 60,
