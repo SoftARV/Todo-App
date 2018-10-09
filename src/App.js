@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Easing, Animated, Platform } from "react-native";
+// import { Easing, Animated, Platform } from "react-native";
 import { createStackNavigator } from "react-navigation";
 import HomeScreen from "./screens/HomeScreen";
 import PostScreen from "./screens/PostScreen";
