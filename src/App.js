@@ -6,32 +6,32 @@ import PostScreen from "./screens/PostScreen";
 import NewPostScreen from "./screens/NewPostScreen";
 import NavigationService from "./shared/NavigationService";
 
-const transitionConfig = () => {
-  return {
-    transitionSpec: {
-      duration: 400,
-      easing: Easing.out(Easing.poly(4)),
-      timing: Animated.timing,
-      useNativeDriver: true
-    },
-    screenInterpolator: sceneProps => {
-      const { position, scene } = sceneProps;
+// const transitionConfig = () => {
+//   return {
+//     transitionSpec: {
+//       duration: 400,
+//       easing: Easing.out(Easing.poly(4)),
+//       timing: Animated.timing,
+//       useNativeDriver: true
+//     },
+//     screenInterpolator: sceneProps => {
+//       const { position, scene } = sceneProps;
 
-      const thisSceneIndex = scene.index;
+//       const thisSceneIndex = scene.index;
 
-      const scale = position.interpolate({
-        inputRange: [thisSceneIndex - 1, thisSceneIndex],
-        outputRange: [0, 1]
-      });
+//       const scale = position.interpolate({
+//         inputRange: [thisSceneIndex - 1, thisSceneIndex],
+//         outputRange: [0, 1]
+//       });
 
-      const scaleAnimation = {
-        transform: [{ scaleY: scale }]
-      };
+//       const scaleAnimation = {
+//         transform: [{ scaleY: scale }]
+//       };
 
-      return scaleAnimation;
-    }
-  };
-};
+//       return scaleAnimation;
+//     }
+//   };
+// };
 
 const RootStack = createStackNavigator(
   {
@@ -40,8 +40,8 @@ const RootStack = createStackNavigator(
     NewPostScreen
   },
   {
-    initialRouteName: "HomeScreen",
-    transitionConfig: Platform.OS === "ios" ? transitionConfig : null
+    initialRouteName: "HomeScreen"
+    // transitionConfig: Platform.OS === "ios" ? transitionConfig : null
   }
 );
 
