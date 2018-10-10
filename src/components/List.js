@@ -4,7 +4,7 @@ import PostItem from "./PostItem";
 import NavigationService from "../shared/NavigationService";
 
 export default class List extends React.Component {
-  _keyExtractor = (item, index) => item.name;
+  _keyExtractor = (item, index) => item.id;
 
   _renderPost(post) {
     return (
@@ -47,60 +47,3 @@ const styles = StyleSheet.create({
     fontFamily: "Nunito"
   }
 });
-
-// const todos = [
-//   {
-//     name: "Shot",
-//     color: "#a9d0b6",
-//     tasks: [
-//       ({ task: "Task", state: false },
-//       { task: "Task", state: false },
-//       { task: "Task", state: false })
-//     ]
-//   },
-//   {
-//     name: "Juice",
-//     color: "#e9bbd1",
-//     tasks: [
-//       ({ task: "Task", state: false },
-//       { task: "Task", state: false },
-//       { task: "Task", state: false })
-//     ]
-//   },
-//   {
-//     name: "Mighty Juice",
-//     color: "#eba65c",
-//     tasks: [
-//       ({ task: "Task", state: false },
-//       { task: "Task", state: false },
-//       { task: "Task", state: false })
-//     ]
-//   },
-//   {
-//     name: "Sandwich",
-//     color: "#95c3e4",
-//     tasks: [
-//       ({ task: "Task", state: false },
-//       { task: "Task", state: false },
-//       { task: "Task", state: false })
-//     ]
-//   },
-//   {
-//     name: "Signature",
-//     color: "#a390bc",
-//     tasks: [
-//       ({ task: "Task", state: false },
-//       { task: "Task", state: false },
-//       { task: "Task", state: false })
-//     ]
-//   },
-//   {
-//     name: "Coffee",
-//     color: "#fef2a0",
-//     tasks: [
-//       ({ task: "Task", state: false },
-//       { task: "Task", state: false },
-//       { task: "Task", state: false })
-//     ]
-//   }
-// ];

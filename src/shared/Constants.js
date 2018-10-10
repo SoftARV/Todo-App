@@ -30,16 +30,3 @@ export const colorList = [
     value: "#fef2a0"
   }
 ];
-
-export const typeList = [
-  {
-    name: "Todo List",
-    color: "#fff",
-    value: "todo"
-  },
-  {
-    name: "Note",
-    color: "#fff",
-    value: "note"
-  }
-];

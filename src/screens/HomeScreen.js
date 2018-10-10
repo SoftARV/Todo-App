@@ -42,7 +42,4 @@ function mapStateToProps({ todos }) {
   return { todos };
 }
 
-export default connect(
-  mapStateToProps,
-  {}
-)(HomeScreen);
+export default connect(mapStateToProps)(HomeScreen);

@@ -7,8 +7,7 @@ const initState = {
 export default function(state = initState, action) {
   switch (action.type) {
     case CREATE_TODO:
-      let nextState = state.todos.push(action.payload);
-      return { ...nextState };
+      return { todos: [...state.todos, action.payload] };
     default:
       return state;
   }

@@ -7,14 +7,16 @@ import {
   TextInput
 } from "react-native";
 import { Icon } from "react-native-elements";
+import { connect } from "react-redux";
+import { createTodo } from "../shared/actions/TodoActions";
 import NavigationService from "../shared/NavigationService";
 import ToolBar from "../shared/ToolBar";
 import FabButton from "../components/FabButton";
 import Select from "../shared/Select";
 import DismissKeyboard from "../shared/DismissKeyboard";
-import { colorList, typeList } from "../shared/Constants";
+import { colorList } from "../shared/Constants";
 
-export default class NewPostScreen extends React.Component {
+class NewPostScreen extends React.Component {
   static navigationOptions = {
     title: "New Post",
     header: null
@@ -24,7 +26,6 @@ export default class NewPostScreen extends React.Component {
     super(props);
     this.state = {
       name: "",
-      type: "",
       color: "#fff"
     };
   }
@@ -33,11 +34,8 @@ export default class NewPostScreen extends React.Component {
     this.setState({ color: value });
   }
 
-  _typeSelected({ value }) {
-    this.setState({ type: value });
-  }
-
   _createPost = () => {
+    this.props.createTodo(this.state.name, this.state.color);
     NavigationService.goBack();
   };
 
@@ -59,6 +57,8 @@ export default class NewPostScreen extends React.Component {
           <View style={styles.body}>
             <View style={[styles.inputContainer, { backgroundColor: color }]}>
               <TextInput
+                value={this.state.name}
+                onChangeText={text => this.setState({ name: text })}
                 style={[styles.titleInput]}
                 placeholder={input.placeholder}
                 underlineColorAndroid={input.underlineColorAndroid}
@@ -123,3 +123,8 @@ const styles = StyleSheet.create({
     alignItems: "center"
   }
 });
+
+export default connect(
+  null,
+  { createTodo }
+)(NewPostScreen);

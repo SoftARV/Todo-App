@@ -1,11 +1,11 @@
 import { createStore } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import { AsyncStorage } from "react-native";
 import TodoReducer from "../reducers/TodoReducer";
 
 const persistconfig = {
   key: "todo",
-  storage
+  storage: AsyncStorage
 };
 
 const persistedReducer = persistReducer(persistconfig, TodoReducer);
