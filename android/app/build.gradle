@@ -138,12 +138,6 @@ android {
     }
 }
 
-configurations.all {
-    resolutionStrategy {
-        force 'org.webkit:android-jsc:r224109'
-    }
-}
-
 dependencies {
     compile project(':react-native-linear-gradient')
     compile project(':react-native-vector-icons')
