@@ -1,16 +1,21 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
+import { connect } from "react-redux";
 import SearchBar from "../components/SearchBar";
 import List from "../components/List";
 import FabButton from "../components/FabButton";
 import NavigationService from "../shared/NavigationService";
 import DismissKeyboard from "../shared/DismissKeyboard";
 
-export default class HomeScreen extends Component {
+class HomeScreen extends Component {
   static navigationOptions = {
     title: "Home",
     header: null
   };
+
+  componentDidMount() {
+    console.log(this.props.todos);
+  }
 
   render() {
     return (
@@ -35,3 +40,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#1c1c1c"
   }
 });
+
+function mapStateToProps({ todos }) {
+  return { todos };
+}
+
+export default connect(
+  mapStateToProps,
+  {}
+)(HomeScreen);

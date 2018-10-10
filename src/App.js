@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 // import { Easing, Animated, Platform } from "react-native";
 import { createStackNavigator } from "react-navigation";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "./shared/store";
 import HomeScreen from "./screens/HomeScreen";
 import PostScreen from "./screens/PostScreen";
 import NewPostScreen from "./screens/NewPostScreen";
@@ -47,6 +50,12 @@ const RootStack = createStackNavigator(
 
 export default class App extends Component {
   render() {
-    return <RootStack ref={NavigationService.setTopLevelNavigator} />;
+    return (
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <RootStack ref={NavigationService.setTopLevelNavigator} />
+        </PersistGate>
+      </Provider>
+    );
   }
 }
