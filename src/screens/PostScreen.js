@@ -4,6 +4,7 @@ import { Icon } from "react-native-elements";
 import { getBottomSpace } from "react-native-iphone-x-helper";
 import NavigationService from "../shared/NavigationService";
 import ToolBar from "../shared/ToolBar";
+import TaskInput from "../components/TaskInput";
 import DismissKeyboard from "../shared/DismissKeyboard";
 
 export default class PostScreen extends React.Component {
@@ -13,7 +14,7 @@ export default class PostScreen extends React.Component {
   };
 
   render() {
-    const { color, dark, name } = this.props.navigation.state.params;
+    const { color, name } = this.props.navigation.state.params;
 
     return (
       <DismissKeyboard>
@@ -23,7 +24,7 @@ export default class PostScreen extends React.Component {
               onPress={() => NavigationService.goBack()}
               style={styles.button}
             >
-              <Icon size={add.size} name={"chevron-left"} color={dark} />
+              <Icon size={back.size} name={back.name} color={back.color} />
             </TouchableOpacity>
             <TextInput
               style={[styles.titleInput]}
@@ -33,26 +34,11 @@ export default class PostScreen extends React.Component {
               value={name}
             />
             <TouchableOpacity style={styles.button}>
-              <Icon size={add.size} name={add.name} color={dark} />
+              <Icon size={add.size} name={add.name} color={add.color} />
             </TouchableOpacity>
           </ToolBar>
           <View>
-            <View style={styles.section}>
-              <View style={styles.task}>
-                <TextInput
-                  style={styles.taskInput}
-                  placeholder={taskInput.placeholder}
-                  underlineColorAndroid={taskInput.underlineColorAndroid}
-                  placeholderTextColor={taskInput.placeholderTextColor}
-                />
-              </View>
-              <TouchableOpacity style={styles.button}>
-                <Icon size={check.size} name={check.name} color={dark} />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.button}>
-                <Icon size={edit.size} name={edit.name} color={dark} />
-              </TouchableOpacity>
-            </View>
+            <TaskInput />
           </View>
         </View>
       </DismissKeyboard>
@@ -60,29 +46,20 @@ export default class PostScreen extends React.Component {
   }
 }
 
+const back = {
+  name: "chevron-left",
+  size: 40,
+  color: "#0006"
+};
+
 const add = {
   name: "add",
-  size: 40
-};
-
-const check = {
-  name: "check",
-  size: 30
-};
-
-const edit = {
-  name: "edit",
-  size: 30
+  size: 40,
+  color: "#0006"
 };
 
 const headerInput = {
   placeholder: "Title...",
-  underlineColorAndroid: "transparent",
-  placeholderTextColor: "rgba(0, 0, 0, 0.6)"
-};
-
-const taskInput = {
-  placeholder: "Task...",
   underlineColorAndroid: "transparent",
   placeholderTextColor: "rgba(0, 0, 0, 0.6)"
 };
@@ -97,9 +74,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "rgba(0, 0, 0, 0.1)"
   },
-  section: {
-    flexDirection: "row"
-  },
   titleInput: {
     flex: 1,
     height: 60,
@@ -109,16 +83,5 @@ const styles = StyleSheet.create({
   button: {
     justifyContent: "center",
     alignItems: "center"
-  },
-  task: {
-    flex: 1,
-    height: 50,
-    justifyContent: "center",
-    paddingLeft: 10
-  },
-  taskInput: {
-    minHeight: 50,
-    fontSize: 18,
-    fontFamily: "Nunito"
   }
 });
