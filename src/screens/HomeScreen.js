@@ -13,16 +13,13 @@ class HomeScreen extends Component {
     header: null
   };
 
-  componentDidMount() {
-    console.log(this.props.todos);
-  }
-
   render() {
+    const { todos } = this.props;
     return (
       <DismissKeyboard>
         <View style={styles.container}>
           <SearchBar />
-          <List />
+          <List todos={todos} />
           <FabButton
             onFabPressed={() => NavigationService.navigate("NewPostScreen")}
             text={"New Post"}

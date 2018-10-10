@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, FlatList } from "react-native";
+import { StyleSheet, FlatList, View, Text } from "react-native";
 import PostItem from "./PostItem";
 import NavigationService from "../shared/NavigationService";
 
@@ -16,10 +16,18 @@ export default class List extends React.Component {
   }
 
   render() {
+    const { todos } = this.props;
+    if (todos.length === 0) {
+      return (
+        <View style={styles.container}>
+          <Text style={styles.text}>Start by Creating a Post</Text>
+        </View>
+      );
+    }
+
     return (
       <FlatList
-        style={styles.container}
-        data={posts}
+        data={todos}
         keyExtractor={this._keyExtractor}
         renderItem={this._renderPost}
       />
@@ -28,32 +36,71 @@ export default class List extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {}
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  text: {
+    color: "#90a4ae",
+    fontSize: 18,
+    fontFamily: "Nunito"
+  }
 });
 
-const posts = [
-  {
-    name: "Shot",
-    color: "#a9d0b6"
-  },
-  {
-    name: "Juice",
-    color: "#e9bbd1"
-  },
-  {
-    name: "Mighty Juice",
-    color: "#eba65c"
-  },
-  {
-    name: "Sandwich",
-    color: "#95c3e4"
-  },
-  {
-    name: "Signature",
-    color: "#a390bc"
-  },
-  {
-    name: "Coffee",
-    color: "#fef2a0"
-  }
-];
+// const todos = [
+//   {
+//     name: "Shot",
+//     color: "#a9d0b6",
+//     tasks: [
+//       ({ task: "Task", state: false },
+//       { task: "Task", state: false },
+//       { task: "Task", state: false })
+//     ]
+//   },
+//   {
+//     name: "Juice",
+//     color: "#e9bbd1",
+//     tasks: [
+//       ({ task: "Task", state: false },
+//       { task: "Task", state: false },
+//       { task: "Task", state: false })
+//     ]
+//   },
+//   {
+//     name: "Mighty Juice",
+//     color: "#eba65c",
+//     tasks: [
+//       ({ task: "Task", state: false },
+//       { task: "Task", state: false },
+//       { task: "Task", state: false })
+//     ]
+//   },
+//   {
+//     name: "Sandwich",
+//     color: "#95c3e4",
+//     tasks: [
+//       ({ task: "Task", state: false },
+//       { task: "Task", state: false },
+//       { task: "Task", state: false })
+//     ]
+//   },
+//   {
+//     name: "Signature",
+//     color: "#a390bc",
+//     tasks: [
+//       ({ task: "Task", state: false },
+//       { task: "Task", state: false },
+//       { task: "Task", state: false })
+//     ]
+//   },
+//   {
+//     name: "Coffee",
+//     color: "#fef2a0",
+//     tasks: [
+//       ({ task: "Task", state: false },
+//       { task: "Task", state: false },
+//       { task: "Task", state: false })
+//     ]
+//   }
+// ];
