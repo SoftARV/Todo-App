@@ -1,4 +1,4 @@
-import { CREATE_TODO } from "./types";
+import { CREATE_TODO, RENAME_TODO, CREATE_TASK } from "./types";
 import IDGenerator from "../IDGenerator";
 
 export const createTodo = (name, color) => {
@@ -12,4 +12,6 @@ export const createTodo = (name, color) => {
   return { type: CREATE_TODO, payload: todo };
 };
 
-export const renameTodo = (id, name) => {};
+export const renameTodo = (id, name) => {
+  return { type: RENAME_TODO, payload: { id, name } };
+};

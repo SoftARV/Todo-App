@@ -1,21 +1,57 @@
 import React from "react";
-import { View, StyleSheet, TouchableOpacity, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  TextInput
+} from "react-native";
 import { Icon } from "react-native-elements";
 import { getBottomSpace } from "react-native-iphone-x-helper";
+import { connect } from "react-redux";
+import TaskInput from "../components/TaskInput";
+import { renameTodo } from "../shared/actions/TodoActions";
 import NavigationService from "../shared/NavigationService";
 import ToolBar from "../shared/ToolBar";
-import TaskInput from "../components/TaskInput";
 import DismissKeyboard from "../shared/DismissKeyboard";
 
-export default class PostScreen extends React.Component {
+class PostScreen extends React.Component {
   static navigationOptions = {
     title: "Post",
     header: null
   };
 
-  render() {
-    const { color, name } = this.props.navigation.state.params;
+  constructor(props) {
+    super(props);
 
+    const { id, name, color, task } = this.props.navigation.state.params;
+    this.state = {
+      id,
+      name,
+      color,
+      task
+    };
+  }
+
+  _updateTodoName = name => {
+    this.setState({ name });
+    this.props.renameTodo(this.state.id, name);
+  };
+
+  _renderTask(tasks) {
+    if (tasks.length === 0) {
+      return (
+        <View style={styles.emptyContainer}>
+          <Text style={styles.emptyText}>Press the + Button to add a Task</Text>
+        </View>
+      );
+    }
+
+    return <TaskInput />;
+  }
+
+  render() {
+    const { color, name, task } = this.state;
     return (
       <DismissKeyboard>
         <View style={[styles.container, { backgroundColor: color }]}>
@@ -27,19 +63,18 @@ export default class PostScreen extends React.Component {
               <Icon size={back.size} name={back.name} color={back.color} />
             </TouchableOpacity>
             <TextInput
+              value={name}
+              onChangeText={this._updateTodoName}
               style={[styles.titleInput]}
               placeholder={headerInput.placeholder}
               underlineColorAndroid={headerInput.underlineColorAndroid}
               placeholderTextColor={headerInput.placeholderTextColor}
-              value={name}
             />
             <TouchableOpacity style={styles.button}>
               <Icon size={add.size} name={add.name} color={add.color} />
             </TouchableOpacity>
           </ToolBar>
-          <View>
-            <TaskInput />
-          </View>
+          {this._renderTask(task)}
         </View>
       </DismissKeyboard>
     );
@@ -69,6 +104,16 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingBottom: getBottomSpace()
   },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  emptyText: {
+    color: "#0006",
+    fontSize: 20,
+    fontFamily: "Nunito"
+  },
   header: {
     flexDirection: "row",
     justifyContent: "center",
@@ -85,3 +130,8 @@ const styles = StyleSheet.create({
     alignItems: "center"
   }
 });
+
+export default connect(
+  null,
+  { renameTodo }
+)(PostScreen);

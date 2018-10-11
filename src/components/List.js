@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#90a4ae",
-    fontSize: 18,
+    fontSize: 20,
     fontFamily: "Nunito"
   }
 });
