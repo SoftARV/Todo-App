@@ -10,7 +10,7 @@ import { Icon } from "react-native-elements";
 
 export default class TaskInput extends React.Component {
   render() {
-    const { text, isCompleted } = this.props;
+    const { id, text, isCompleted, callback } = this.props;
     return (
       <View style={styles.container}>
         <TouchableHighlight style={styles.task}>
@@ -26,7 +26,10 @@ export default class TaskInput extends React.Component {
             {text}
           </Text>
         </TouchableHighlight>
-        <TouchableHighlight style={styles.button}>
+        <TouchableHighlight
+          onPress={callback.bind(this, id)}
+          style={styles.button}
+        >
           <Icon
             size={deleteIcon.size}
             name={deleteIcon.name}

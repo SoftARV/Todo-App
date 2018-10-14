@@ -11,7 +11,11 @@ import { Icon } from "react-native-elements";
 import { getBottomSpace } from "react-native-iphone-x-helper";
 import { connect } from "react-redux";
 import TaskInput from "../components/TaskInput";
-import { renameTodo, createTask } from "../shared/actions/TodoActions";
+import {
+  renameTodo,
+  createTask,
+  removeTask
+} from "../shared/actions/TodoActions";
 import NavigationService from "../shared/NavigationService";
 import ToolBar from "../shared/ToolBar";
 import FabButton from "../components/FabButton";
@@ -42,13 +46,12 @@ class PostScreen extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.todos !== prevProps.todos) {
       const { id } = this.props.navigation.state.params;
-      const { tasks } = this.props.todos.find(item => item.id === id);
-      this.setState({ tasks });
+      const { name, tasks } = this.props.todos.find(item => item.id === id);
+      this.setState({ name, tasks });
     }
   }
 
   _updateTodoName = name => {
-    this.setState({ name });
     this.props.renameTodo(this.state.id, name);
   };
 
@@ -57,6 +60,10 @@ class PostScreen extends React.Component {
     this.props.createTask(id, text);
 
     this.setState({ text: "" });
+  };
+
+  _removeTask = id => {
+    this.props.removeTask(this.state.id, id);
   };
 
   _keyExtractor = (item, index) => item.id;
@@ -74,7 +81,9 @@ class PostScreen extends React.Component {
       <FlatList
         data={tasks}
         keyExtractor={this._keyExtractor}
-        renderItem={task => <TaskInput {...task.item} />}
+        renderItem={task => (
+          <TaskInput {...task.item} callback={this._removeTask} />
+        )}
       />
     );
   }
@@ -182,5 +191,5 @@ function mapStateToProps({ todos }) {
 
 export default connect(
   mapStateToProps,
-  { renameTodo, createTask }
+  { renameTodo, createTask, removeTask }
 )(PostScreen);
