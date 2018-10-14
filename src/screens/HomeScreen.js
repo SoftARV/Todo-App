@@ -21,7 +21,7 @@ class HomeScreen extends Component {
           <SearchBar />
           <List todos={todos} />
           <FabButton
-            onFabPressed={() => NavigationService.navigate("NewPostScreen")}
+            callback={() => NavigationService.navigate("NewPostScreen")}
             text={"New Post"}
             color={"#c2185b"}
           />

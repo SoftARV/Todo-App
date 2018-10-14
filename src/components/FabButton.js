@@ -3,17 +3,24 @@ import { Text, TouchableOpacity, StyleSheet, View } from "react-native";
 import { getBottomSpace } from "react-native-iphone-x-helper";
 
 export default class FabButton extends React.Component {
-  render() {
-    const { onFabPressed, text, color } = this.props;
+  _renderButton(text, callback) {
+    if (!callback) {
+      return null;
+    }
 
     return (
-      <View style={[styles.root, { backgroundColor: color }]}>
-        <TouchableOpacity
-          onPress={onFabPressed.bind(this)}
-          style={styles.container}
-        >
-          <Text style={styles.text}>{text}</Text>
-        </TouchableOpacity>
+      <TouchableOpacity onPress={callback.bind(this)} style={styles.button}>
+        <Text style={styles.text}>{text}</Text>
+      </TouchableOpacity>
+    );
+  }
+
+  render() {
+    const { callback, text, color } = this.props;
+    return (
+      <View style={[styles.container, { backgroundColor: color }]}>
+        {this._renderButton(text, callback)}
+        {this.props.children}
       </View>
     );
   }
@@ -26,16 +33,16 @@ FabButton.defaultProps = {
 };
 
 const styles = StyleSheet.create({
-  root: {
+  container: {
+    paddingLeft: 10,
+    paddingRight: 10,
     paddingBottom: getBottomSpace(),
     width: "100%",
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center"
   },
-  container: {
-    paddingLeft: 10,
-    paddingRight: 10,
+  button: {
     justifyContent: "center",
     flex: 1,
     height: 60

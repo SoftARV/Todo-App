@@ -4,15 +4,17 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  FlatList
 } from "react-native";
 import { Icon } from "react-native-elements";
 import { getBottomSpace } from "react-native-iphone-x-helper";
 import { connect } from "react-redux";
 import TaskInput from "../components/TaskInput";
-import { renameTodo } from "../shared/actions/TodoActions";
+import { renameTodo, createTask } from "../shared/actions/TodoActions";
 import NavigationService from "../shared/NavigationService";
 import ToolBar from "../shared/ToolBar";
+import FabButton from "../components/FabButton";
 import DismissKeyboard from "../shared/DismissKeyboard";
 
 class PostScreen extends React.Component {
@@ -24,13 +26,25 @@ class PostScreen extends React.Component {
   constructor(props) {
     super(props);
 
-    const { id, name, color, task } = this.props.navigation.state.params;
+    const { id } = this.props.navigation.state.params;
+    const { name, color, tasks } = this.props.todos.find(
+      item => item.id === id
+    );
     this.state = {
       id,
       name,
       color,
-      task
+      tasks,
+      text: ""
     };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.todos !== prevProps.todos) {
+      const { id } = this.props.navigation.state.params;
+      const { tasks } = this.props.todos.find(item => item.id === id);
+      this.setState({ tasks });
+    }
   }
 
   _updateTodoName = name => {
@@ -38,7 +52,16 @@ class PostScreen extends React.Component {
     this.props.renameTodo(this.state.id, name);
   };
 
-  _renderTask(tasks) {
+  _createTask = () => {
+    const { id, text } = this.state;
+    this.props.createTask(id, text);
+
+    this.setState({ text: "" });
+  };
+
+  _keyExtractor = (item, index) => item.id;
+
+  _renderTaskList(tasks) {
     if (tasks.length === 0) {
       return (
         <View style={styles.emptyContainer}>
@@ -47,11 +70,17 @@ class PostScreen extends React.Component {
       );
     }
 
-    return <TaskInput />;
+    return (
+      <FlatList
+        data={tasks}
+        keyExtractor={this._keyExtractor}
+        renderItem={task => <TaskInput {...task.item} />}
+      />
+    );
   }
 
   render() {
-    const { color, name, task } = this.state;
+    const { color, name, tasks, text } = this.state;
     return (
       <DismissKeyboard>
         <View style={[styles.container, { backgroundColor: color }]}>
@@ -65,16 +94,26 @@ class PostScreen extends React.Component {
             <TextInput
               value={name}
               onChangeText={this._updateTodoName}
-              style={[styles.titleInput]}
+              style={styles.titleInput}
               placeholder={headerInput.placeholder}
               underlineColorAndroid={headerInput.underlineColorAndroid}
               placeholderTextColor={headerInput.placeholderTextColor}
             />
-            <TouchableOpacity style={styles.button}>
+          </ToolBar>
+          {this._renderTaskList(tasks)}
+          <FabButton color={color}>
+            <TextInput
+              value={text}
+              onChangeText={text => this.setState({ text })}
+              style={styles.titleInput}
+              placeholder={footerInput.placeholder}
+              underlineColorAndroid={footerInput.underlineColorAndroid}
+              placeholderTextColor={footerInput.placeholderTextColor}
+            />
+            <TouchableOpacity style={styles.button} onPress={this._createTask}>
               <Icon size={add.size} name={add.name} color={add.color} />
             </TouchableOpacity>
-          </ToolBar>
-          {this._renderTask(task)}
+          </FabButton>
         </View>
       </DismissKeyboard>
     );
@@ -95,6 +134,12 @@ const add = {
 
 const headerInput = {
   placeholder: "Title...",
+  underlineColorAndroid: "transparent",
+  placeholderTextColor: "rgba(0, 0, 0, 0.6)"
+};
+
+const footerInput = {
+  placeholder: "New Task...",
   underlineColorAndroid: "transparent",
   placeholderTextColor: "rgba(0, 0, 0, 0.6)"
 };
@@ -131,7 +176,11 @@ const styles = StyleSheet.create({
   }
 });
 
+function mapStateToProps({ todos }) {
+  return { todos };
+}
+
 export default connect(
-  null,
-  { renameTodo }
+  mapStateToProps,
+  { renameTodo, createTask }
 )(PostScreen);

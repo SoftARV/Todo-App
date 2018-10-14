@@ -23,6 +23,15 @@ export default function(state = initState, action) {
               : todo
         )
       };
+    case CREATE_TASK:
+      return {
+        todos: state.todos.map(
+          todo =>
+            todo.id === action.payload.id
+              ? { ...todo, tasks: [...todo.tasks, action.payload.task] }
+              : todo
+        )
+      };
     default:
       return state;
   }

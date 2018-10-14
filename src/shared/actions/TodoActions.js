@@ -6,7 +6,7 @@ export const createTodo = (name, color) => {
     id: IDGenerator(),
     name: name,
     color: color,
-    task: []
+    tasks: []
   };
 
   return { type: CREATE_TODO, payload: todo };
@@ -14,4 +14,14 @@ export const createTodo = (name, color) => {
 
 export const renameTodo = (id, name) => {
   return { type: RENAME_TODO, payload: { id, name } };
+};
+
+export const createTask = (id, text) => {
+  let task = {
+    id: IDGenerator(),
+    text,
+    isCompleted: false
+  };
+
+  return { type: CREATE_TASK, payload: { id, task } };
 };

@@ -74,7 +74,7 @@ class NewPostScreen extends React.Component {
             </View>
           </View>
           <FabButton
-            onFabPressed={this._createPost}
+            callback={this._createPost}
             text={"Create Post"}
             color={"#4cca51"}
           />
