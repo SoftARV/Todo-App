@@ -3,7 +3,7 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableHighlight,
+  TouchableOpacity,
   TextInput,
   FlatList
 } from "react-native";
@@ -15,6 +15,7 @@ import TaskInput from "../components/TaskInput";
 import {
   renameTodo,
   createTask,
+  toggleTask,
   removeTask
 } from "../shared/actions/TodoActions";
 import NavigationService from "../shared/NavigationService";
@@ -67,20 +68,28 @@ class PostScreen extends React.Component {
     this.props.removeTask(this.state.id, id);
   }
 
-  _toogleTask = id => {};
+  _toggleTask = id => {
+    this.props.toggleTask(this.state.id, id);
+  };
 
   _keyExtractor = (item, index) => item.id;
 
   _renderTaskRow(task) {
     const { color } = this.state;
-    return <TaskInput style={{ backgroundColor: color }} {...task.item} />;
+    return (
+      <TaskInput
+        style={{ backgroundColor: color }}
+        callback={this._toggleTask}
+        {...task.item}
+      />
+    );
   }
 
   _renderHiddenItem(task) {
     const { id } = task.item;
     return (
       <View style={styles.rowBack}>
-        <TouchableHighlight
+        <TouchableOpacity
           style={styles.deleteHiddenButton}
           onPress={this._removeTask.bind(this, id)}
         >
@@ -89,7 +98,7 @@ class PostScreen extends React.Component {
             name={deleteIcon.name}
             color={deleteIcon.color}
           />
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -121,12 +130,12 @@ class PostScreen extends React.Component {
       <DismissKeyboard>
         <View style={[styles.container, { backgroundColor: color }]}>
           <ToolBar color={color}>
-            <TouchableHighlight
+            <TouchableOpacity
               onPress={() => NavigationService.goBack()}
               style={styles.button}
             >
               <Icon size={back.size} name={back.name} color={back.color} />
-            </TouchableHighlight>
+            </TouchableOpacity>
             <TextInput
               value={name}
               onChangeText={this._updateTodoName}
@@ -146,12 +155,9 @@ class PostScreen extends React.Component {
               underlineColorAndroid={footerInput.underlineColorAndroid}
               placeholderTextColor={footerInput.placeholderTextColor}
             />
-            <TouchableHighlight
-              style={styles.button}
-              onPress={this._createTask}
-            >
+            <TouchableOpacity style={styles.button} onPress={this._createTask}>
               <Icon size={add.size} name={add.name} color={add.color} />
-            </TouchableHighlight>
+            </TouchableOpacity>
           </FabButton>
         </View>
       </DismissKeyboard>
@@ -241,5 +247,5 @@ function mapStateToProps({ todos }) {
 
 export default connect(
   mapStateToProps,
-  { renameTodo, createTask, removeTask }
+  { renameTodo, createTask, toggleTask, removeTask }
 )(PostScreen);

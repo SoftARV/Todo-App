@@ -37,6 +37,23 @@ export default function(state = initState, action) {
               : todo
         )
       };
+    case TOGGLE_TASK:
+      return {
+        todos: state.todos.map(
+          todo =>
+            todo.id === action.payload.todoId
+              ? {
+                  ...todo,
+                  tasks: todo.tasks.map(
+                    task =>
+                      task.id === action.payload.taskId
+                        ? { ...task, isCompleted: !task.isCompleted }
+                        : task
+                  )
+                }
+              : todo
+        )
+      };
     case REMOVE_TASK:
       return {
         todos: state.todos.map(

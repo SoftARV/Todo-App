@@ -4,15 +4,15 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableHighlight
+  TouchableOpacity
 } from "react-native";
 
 export default class TaskInput extends React.Component {
   render() {
-    const { text, isCompleted, style } = this.props;
+    const { id, text, isCompleted, style, callback } = this.props;
     return (
       <View style={[styles.container, style]}>
-        <TouchableHighlight style={styles.task}>
+        <TouchableOpacity onPress={callback.bind(this, id)} style={styles.task}>
           <Text
             style={[
               styles.taskText,
@@ -24,7 +24,7 @@ export default class TaskInput extends React.Component {
           >
             {text}
           </Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
     );
   }

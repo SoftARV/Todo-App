@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text, TouchableHighlight } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { SwipeListView } from "react-native-swipe-list-view";
 import { Icon } from "react-native-elements";
 import { connect } from "react-redux";
@@ -23,7 +23,7 @@ class List extends React.Component {
     const { id } = post.item;
     return (
       <View style={[styles.rowBack]}>
-        <TouchableHighlight
+        <TouchableOpacity
           style={styles.deleteHiddenButton}
           onPress={() => this.props.removeTodo(id)}
         >
@@ -32,7 +32,7 @@ class List extends React.Component {
             name={deleteIcon.name}
             color={deleteIcon.color}
           />
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
     );
   }

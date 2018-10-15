@@ -37,6 +37,10 @@ export const createTask = (id, text) => {
   return { type: CREATE_TASK, payload: { id, task } };
 };
 
+export const toggleTask = (todoId, taskId) => {
+  return { type: TOGGLE_TASK, payload: { todoId, taskId } };
+};
+
 export const removeTask = (todoId, taskId) => {
   return { type: REMOVE_TASK, payload: { todoId, taskId } };
 };

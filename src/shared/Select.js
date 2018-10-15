@@ -2,7 +2,7 @@ import React from "react";
 import {
   View,
   Text,
-  TouchableHighlight,
+  TouchableOpacity,
   StyleSheet,
   Animated,
   FlatList
@@ -47,12 +47,9 @@ export default class Select extends React.Component {
   _renderData({ item }) {
     const { button, title } = styles;
     return (
-      <TouchableHighlight
-        style={button}
-        onPress={() => this._setSelected(item)}
-      >
+      <TouchableOpacity style={button} onPress={() => this._setSelected(item)}>
         <Text style={[title, { color: item.color }]}>{item.name}</Text>
-      </TouchableHighlight>
+      </TouchableOpacity>
     );
   }
 
@@ -76,11 +73,11 @@ export default class Select extends React.Component {
     return (
       <Animated.View style={[container, { height: this.state.animation }]}>
         <View style={titleContainer} onLayout={this._setMinHeight.bind(this)}>
-          <TouchableHighlight style={button} onPress={this._toogle}>
+          <TouchableOpacity style={button} onPress={this._toogle}>
             <Text style={[title, { color: this.state.selected.color }]}>
               {this.state.selected.name}
             </Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
         <View style={body} onLayout={this._setMaxHeight.bind(this)}>
           <FlatList
