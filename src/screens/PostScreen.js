@@ -3,13 +3,14 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
+  TouchableHighlight,
   TextInput,
   FlatList
 } from "react-native";
 import { Icon } from "react-native-elements";
 import { getBottomSpace } from "react-native-iphone-x-helper";
 import { connect } from "react-redux";
+import { SwipeListView } from "react-native-swipe-list-view";
 import TaskInput from "../components/TaskInput";
 import {
   renameTodo,
@@ -62,11 +63,36 @@ class PostScreen extends React.Component {
     this.setState({ text: "" });
   };
 
-  _removeTask = id => {
+  _removeTask(id) {
     this.props.removeTask(this.state.id, id);
-  };
+  }
+
+  _toogleTask = id => {};
 
   _keyExtractor = (item, index) => item.id;
+
+  _renderTaskRow(task) {
+    const { color } = this.state;
+    return <TaskInput style={{ backgroundColor: color }} {...task.item} />;
+  }
+
+  _renderHiddenRow(task) {
+    const { id } = task.item;
+    return (
+      <View style={[styles.rowBack, { backgroundColor: this.state.color }]}>
+        <TouchableHighlight
+          style={styles.deleteHiddenButton}
+          onPress={this._removeTask.bind(this, id)}
+        >
+          <Icon
+            size={deleteIcon.size}
+            name={deleteIcon.name}
+            color={deleteIcon.color}
+          />
+        </TouchableHighlight>
+      </View>
+    );
+  }
 
   _renderTaskList(tasks) {
     if (tasks.length === 0) {
@@ -78,13 +104,19 @@ class PostScreen extends React.Component {
     }
 
     return (
-      <FlatList
+      <SwipeListView
+        useFlatList
         data={tasks}
         keyExtractor={this._keyExtractor}
-        renderItem={task => (
-          <TaskInput {...task.item} callback={this._removeTask} />
-        )}
+        renderItem={this._renderTaskRow.bind(this)}
+        rightOpenValue={-100}
+        renderHiddenItem={this._renderHiddenRow.bind(this)}
       />
+      // <FlatList
+      //   data={tasks}
+      //   keyExtractor={this._keyExtractor}
+      //   renderItem={this._renderTaskRow}
+      // />
     );
   }
 
@@ -94,12 +126,12 @@ class PostScreen extends React.Component {
       <DismissKeyboard>
         <View style={[styles.container, { backgroundColor: color }]}>
           <ToolBar color={color}>
-            <TouchableOpacity
+            <TouchableHighlight
               onPress={() => NavigationService.goBack()}
               style={styles.button}
             >
               <Icon size={back.size} name={back.name} color={back.color} />
-            </TouchableOpacity>
+            </TouchableHighlight>
             <TextInput
               value={name}
               onChangeText={this._updateTodoName}
@@ -119,9 +151,12 @@ class PostScreen extends React.Component {
               underlineColorAndroid={footerInput.underlineColorAndroid}
               placeholderTextColor={footerInput.placeholderTextColor}
             />
-            <TouchableOpacity style={styles.button} onPress={this._createTask}>
+            <TouchableHighlight
+              style={styles.button}
+              onPress={this._createTask}
+            >
               <Icon size={add.size} name={add.name} color={add.color} />
-            </TouchableOpacity>
+            </TouchableHighlight>
           </FabButton>
         </View>
       </DismissKeyboard>
@@ -139,6 +174,12 @@ const add = {
   name: "add",
   size: 40,
   color: "#0006"
+};
+
+const deleteIcon = {
+  name: "delete",
+  size: 30,
+  color: "#fff"
 };
 
 const headerInput = {
@@ -180,6 +221,20 @@ const styles = StyleSheet.create({
     fontFamily: "Nunito"
   },
   button: {
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  rowBack: {
+    alignItems: "center",
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    paddingLeft: 15
+  },
+  deleteHiddenButton: {
+    backgroundColor: "#e53935",
+    width: 100,
+    height: "100%",
     justifyContent: "center",
     alignItems: "center"
   }

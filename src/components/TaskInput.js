@@ -6,13 +6,12 @@ import {
   TextInput,
   TouchableHighlight
 } from "react-native";
-import { Icon } from "react-native-elements";
 
 export default class TaskInput extends React.Component {
   render() {
-    const { id, text, isCompleted, callback } = this.props;
+    const { text, isCompleted, style } = this.props;
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, style]}>
         <TouchableHighlight style={styles.task}>
           <Text
             style={[
@@ -25,16 +24,6 @@ export default class TaskInput extends React.Component {
           >
             {text}
           </Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          onPress={callback.bind(this, id)}
-          style={styles.button}
-        >
-          <Icon
-            size={deleteIcon.size}
-            name={deleteIcon.name}
-            color={deleteIcon.color}
-          />
         </TouchableHighlight>
       </View>
     );
@@ -62,11 +51,11 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 50,
     justifyContent: "center",
+    alignItems: "flex-start",
     paddingLeft: 10
   },
   taskText: {
     color: "#000",
-    minHeight: 50,
     fontSize: 20,
     fontFamily: "Nunito"
   }
