@@ -76,10 +76,10 @@ class PostScreen extends React.Component {
     return <TaskInput style={{ backgroundColor: color }} {...task.item} />;
   }
 
-  _renderHiddenRow(task) {
+  _renderHiddenItem(task) {
     const { id } = task.item;
     return (
-      <View style={[styles.rowBack, { backgroundColor: this.state.color }]}>
+      <View style={styles.rowBack}>
         <TouchableHighlight
           style={styles.deleteHiddenButton}
           onPress={this._removeTask.bind(this, id)}
@@ -110,13 +110,8 @@ class PostScreen extends React.Component {
         keyExtractor={this._keyExtractor}
         renderItem={this._renderTaskRow.bind(this)}
         rightOpenValue={-100}
-        renderHiddenItem={this._renderHiddenRow.bind(this)}
+        renderHiddenItem={this._renderHiddenItem.bind(this)}
       />
-      // <FlatList
-      //   data={tasks}
-      //   keyExtractor={this._keyExtractor}
-      //   renderItem={this._renderTaskRow}
-      // />
     );
   }
 
@@ -234,7 +229,7 @@ const styles = StyleSheet.create({
   deleteHiddenButton: {
     backgroundColor: "#e53935",
     width: 100,
-    height: "100%",
+    height: 50,
     justifyContent: "center",
     alignItems: "center"
   }

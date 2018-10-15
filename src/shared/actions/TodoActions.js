@@ -1,4 +1,11 @@
-import { CREATE_TODO, RENAME_TODO, CREATE_TASK, REMOVE_TASK } from "./types";
+import {
+  CREATE_TODO,
+  REMOVE_TODO,
+  RENAME_TODO,
+  CREATE_TASK,
+  TOGGLE_TASK,
+  REMOVE_TASK
+} from "./types";
 import IDGenerator from "../IDGenerator";
 
 export const createTodo = (name, color) => {
@@ -10,6 +17,10 @@ export const createTodo = (name, color) => {
   };
 
   return { type: CREATE_TODO, payload: todo };
+};
+
+export const removeTodo = id => {
+  return { type: REMOVE_TODO, payload: { id } };
 };
 
 export const renameTodo = (id, name) => {

@@ -3,7 +3,8 @@ import {
   RENAME_TODO,
   CREATE_TASK,
   TOGGLE_TASK,
-  REMOVE_TASK
+  REMOVE_TASK,
+  REMOVE_TODO
 } from "../actions/types";
 
 const initState = {
@@ -14,7 +15,10 @@ export default function(state = initState, action) {
   switch (action.type) {
     case CREATE_TODO:
       return { todos: [...state.todos, action.payload] };
-
+    case REMOVE_TODO:
+      return {
+        todos: state.todos.filter(todo => todo.id !== action.payload.id)
+      };
     case RENAME_TODO:
       return {
         todos: state.todos.map(

@@ -1,9 +1,13 @@
 import React from "react";
-import { StyleSheet, FlatList, View, Text } from "react-native";
+import { StyleSheet, View, Text, TouchableHighlight } from "react-native";
+import { SwipeListView } from "react-native-swipe-list-view";
+import { Icon } from "react-native-elements";
+import { connect } from "react-redux";
+import { removeTodo } from "../shared/actions/TodoActions";
 import PostItem from "./PostItem";
 import NavigationService from "../shared/NavigationService";
 
-export default class List extends React.Component {
+class List extends React.Component {
   _keyExtractor = (item, index) => item.id;
 
   _renderPost(post) {
@@ -12,6 +16,24 @@ export default class List extends React.Component {
         post={post.item}
         onItemPress={() => NavigationService.navigate("PostScreen", post.item)}
       />
+    );
+  }
+
+  _renderHiddenItem(post) {
+    const { id } = post.item;
+    return (
+      <View style={[styles.rowBack]}>
+        <TouchableHighlight
+          style={styles.deleteHiddenButton}
+          onPress={() => this.props.removeTodo(id)}
+        >
+          <Icon
+            size={deleteIcon.size}
+            name={deleteIcon.name}
+            color={deleteIcon.color}
+          />
+        </TouchableHighlight>
+      </View>
     );
   }
 
@@ -26,14 +48,23 @@ export default class List extends React.Component {
     }
 
     return (
-      <FlatList
+      <SwipeListView
+        useFlatList
         data={todos}
         keyExtractor={this._keyExtractor}
         renderItem={this._renderPost}
+        renderHiddenItem={this._renderHiddenItem.bind(this)}
+        rightOpenValue={-100}
       />
     );
   }
 }
+
+const deleteIcon = {
+  name: "delete",
+  size: 30,
+  color: "#fff"
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -45,5 +76,24 @@ const styles = StyleSheet.create({
     color: "#90a4ae",
     fontSize: 20,
     fontFamily: "Nunito"
+  },
+  rowBack: {
+    alignItems: "center",
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    paddingLeft: 15
+  },
+  deleteHiddenButton: {
+    backgroundColor: "#e53935",
+    width: 100,
+    height: 60,
+    justifyContent: "center",
+    alignItems: "center"
   }
 });
+
+export default connect(
+  null,
+  { removeTodo }
+)(List);
