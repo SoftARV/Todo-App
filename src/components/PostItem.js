@@ -34,9 +34,9 @@ export default class PostItem extends React.Component {
 
           <View style={styles.iconContainer}>
             <Icon
-              name={checkCircleIcon.name}
-              type={checkCircleIcon.type}
-              size={checkCircleIcon.size}
+              name={squareIcon.name}
+              type={squareIcon.type}
+              size={squareIcon.size}
               containerStyle={styles.icon}
             />
             <Text style={styles.tasksText}>{this.numberOfTasks(tasks)}</Text>
@@ -53,8 +53,8 @@ const listIcon = {
   size: 20
 };
 
-const checkCircleIcon = {
-  name: "check-circle",
+const squareIcon = {
+  name: "square",
   type: "feather",
   size: 20
 };
