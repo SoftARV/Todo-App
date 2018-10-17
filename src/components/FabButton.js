@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, TouchableOpacity, StyleSheet, View } from "react-native";
 import { getBottomSpace } from "react-native-iphone-x-helper";
+import { Icon } from "react-native-elements";
 import {
   MAIN_BAR_SIZE,
   APP_FONT,
@@ -15,6 +16,13 @@ export default class FabButton extends React.Component {
 
     return (
       <TouchableOpacity onPress={callback.bind(this)} style={styles.button}>
+        <Icon
+          name={plusIcon.name}
+          type={plusIcon.type}
+          size={plusIcon.size}
+          color={plusIcon.color}
+          containerStyle={styles.Icon}
+        />
         <Text style={styles.text}>{text}</Text>
       </TouchableOpacity>
     );
@@ -37,6 +45,13 @@ FabButton.defaultProps = {
   color: "#ccc"
 };
 
+const plusIcon = {
+  name: "plus",
+  type: "feather",
+  size: 23,
+  color: "#fff"
+};
+
 const styles = StyleSheet.create({
   container: {
     paddingLeft: 10,
@@ -49,12 +64,17 @@ const styles = StyleSheet.create({
     height: MAIN_BAR_SIZE
   },
   button: {
-    justifyContent: "center",
-    flex: 1
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center"
   },
   text: {
     fontSize: TITLE_FONT_SIZE,
     color: "#fff",
     fontFamily: APP_FONT
+  },
+  Icon: {
+    marginRight: 10
   }
 });

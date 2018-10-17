@@ -18,8 +18,8 @@ class HomeScreen extends Component {
     return (
       <DismissKeyboard>
         <View style={styles.container}>
-          <SearchBar />
           <List todos={todos} />
+          <SearchBar />
           <FabButton
             callback={() => NavigationService.navigate("NewPostScreen")}
             text={"New Post"}

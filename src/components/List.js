@@ -31,6 +31,7 @@ class List extends React.Component {
           <Icon
             size={deleteIcon.size}
             name={deleteIcon.name}
+            type={deleteIcon.type}
             color={deleteIcon.color}
           />
         </TouchableOpacity>
@@ -62,7 +63,8 @@ class List extends React.Component {
 }
 
 const deleteIcon = {
-  name: "delete",
+  name: "trash-2",
+  type: "feather",
   size: 30,
   color: "#fff"
 };

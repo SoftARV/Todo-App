@@ -56,7 +56,13 @@ class NewPostScreen extends React.Component {
               onPress={() => NavigationService.goBack()}
               style={styles.button}
             >
-              <Icon size={40} name={"chevron-left"} color={"#fff"} />
+              <Icon
+                size={chevronLeftIcon.size}
+                name={chevronLeftIcon.name}
+                type={chevronLeftIcon.type}
+                color={chevronLeftIcon.color}
+                containerStyle={styles.icon}
+              />
             </TouchableOpacity>
             <Text style={styles.title}>New Post</Text>
           </ToolBar>
@@ -96,6 +102,13 @@ const input = {
   placeholderTextColor: "rgba(0, 0, 0, 0.6)"
 };
 
+const chevronLeftIcon = {
+  name: "chevron-left",
+  type: "feather",
+  color: "#fff",
+  size: 20
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -126,6 +139,9 @@ const styles = StyleSheet.create({
   button: {
     justifyContent: "center",
     alignItems: "center"
+  },
+  icon: {
+    marginRight: 10
   }
 });
 

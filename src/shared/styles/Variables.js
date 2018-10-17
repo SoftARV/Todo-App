@@ -9,4 +9,4 @@ export const BUTTON_FONT_SIZE = 16;
 
 // Bar Sizes
 export const MAIN_BAR_SIZE = 56;
-export const BAR_SIZE = 50;
+export const BAR_SIZE = 56;

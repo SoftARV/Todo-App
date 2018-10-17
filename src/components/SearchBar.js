@@ -1,27 +1,37 @@
 import React from "react";
-import { TextInput, StyleSheet } from "react-native";
+import { View, TextInput, StyleSheet } from "react-native";
 import { Icon } from "react-native-elements";
 import ToolBar from "./ToolBar";
-import { HEADLINE_FONT_SIZE, APP_FONT } from "../shared/styles/Variables";
+import {
+  APP_FONT,
+  TITLE_FONT_SIZE,
+  BAR_SIZE
+} from "../shared/styles/Variables";
 
 export default class SearchBar extends React.Component {
   render() {
     return (
-      <ToolBar>
-        <Icon name={search.name} size={search.size} />
+      <View style={styles.container}>
+        <Icon
+          name={searchIcon.name}
+          type={searchIcon.type}
+          size={searchIcon.size}
+          containerStyle={styles.icon}
+        />
         <TextInput
           style={styles.searchInput}
           placeholder={searchBar.placeholder}
           underlineColorAndroid={searchBar.underlineColorAndroid}
         />
-      </ToolBar>
+      </View>
     );
   }
 }
 
-const search = {
+const searchIcon = {
   name: "search",
-  size: 26
+  type: "feather",
+  size: 20
 };
 
 const searchBar = {
@@ -31,14 +41,20 @@ const searchBar = {
 
 const styles = StyleSheet.create({
   container: {
+    height: BAR_SIZE,
     paddingLeft: 10,
     paddingRight: 10,
+    backgroundColor: "#fff",
     flexDirection: "row",
-    backgroundColor: "#fff"
+    justifyContent: "flex-start",
+    alignItems: "center"
   },
   searchInput: {
     flex: 1,
-    fontSize: HEADLINE_FONT_SIZE,
+    fontSize: TITLE_FONT_SIZE,
     fontFamily: APP_FONT
+  },
+  icon: {
+    marginRight: 10
   }
 });

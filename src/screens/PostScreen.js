@@ -102,6 +102,7 @@ class PostScreen extends React.Component {
           <Icon
             size={deleteIcon.size}
             name={deleteIcon.name}
+            type={deleteIcon.type}
             color={deleteIcon.color}
           />
         </TouchableOpacity>
@@ -140,7 +141,12 @@ class PostScreen extends React.Component {
               onPress={() => NavigationService.goBack()}
               style={styles.button}
             >
-              <Icon size={back.size} name={back.name} color={back.color} />
+              <Icon
+                size={chevronLeftIcon.size}
+                name={chevronLeftIcon.name}
+                type={chevronLeftIcon.type}
+                containerStyle={styles.icon}
+              />
             </TouchableOpacity>
             <TextInput
               value={name}
@@ -162,7 +168,11 @@ class PostScreen extends React.Component {
               placeholderTextColor={footerInput.placeholderTextColor}
             />
             <TouchableOpacity style={styles.button} onPress={this._createTask}>
-              <Icon size={add.size} name={add.name} color={add.color} />
+              <Icon
+                size={plusIcon.size}
+                name={plusIcon.name}
+                type={plusIcon.type}
+              />
             </TouchableOpacity>
           </FabButton>
         </View>
@@ -171,21 +181,22 @@ class PostScreen extends React.Component {
   }
 }
 
-const back = {
+const chevronLeftIcon = {
   name: "chevron-left",
-  size: 40,
-  color: "#0006"
+  type: "feather",
+  size: 20
 };
 
-const add = {
-  name: "add",
-  size: 40,
-  color: "#0006"
+const plusIcon = {
+  name: "plus",
+  type: "feather",
+  size: 23
 };
 
 const deleteIcon = {
-  name: "delete",
-  size: 30,
+  name: "trash-2",
+  type: "feather",
+  size: 20,
   color: "#fff"
 };
 
@@ -249,6 +260,9 @@ const styles = StyleSheet.create({
     height: BAR_SIZE,
     justifyContent: "center",
     alignItems: "center"
+  },
+  icon: {
+    paddingRight: 10
   }
 });
 
