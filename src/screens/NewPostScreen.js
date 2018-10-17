@@ -42,25 +42,22 @@ class NewPostScreen extends React.Component {
 
   _createPost = () => {
     this.props.createTodo(this.state.name, this.state.color);
-    NavigationService.goBack();
+    this.props.callback();
   };
 
   render() {
     const { color } = this.state;
-
+    const { callback } = this.props;
     return (
       <DismissKeyboard>
         <View style={styles.container}>
           <ToolBar color={"#c2185b"}>
-            <TouchableOpacity
-              onPress={() => NavigationService.goBack()}
-              style={styles.button}
-            >
+            <TouchableOpacity onPress={callback} style={styles.button}>
               <Icon
-                size={chevronLeftIcon.size}
-                name={chevronLeftIcon.name}
-                type={chevronLeftIcon.type}
-                color={chevronLeftIcon.color}
+                size={xIcon.size}
+                name={xIcon.name}
+                type={xIcon.type}
+                color={xIcon.color}
                 containerStyle={styles.icon}
               />
             </TouchableOpacity>
@@ -102,8 +99,8 @@ const input = {
   placeholderTextColor: "rgba(0, 0, 0, 0.6)"
 };
 
-const chevronLeftIcon = {
-  name: "chevron-left",
+const xIcon = {
+  name: "x",
   type: "feather",
   color: "#fff",
   size: 20
@@ -111,6 +108,7 @@ const chevronLeftIcon = {
 
 const styles = StyleSheet.create({
   container: {
+    maxHeight: 400,
     flex: 1,
     backgroundColor: "#1c1c1c"
   },

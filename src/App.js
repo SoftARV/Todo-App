@@ -6,7 +6,6 @@ import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./shared/store";
 import HomeScreen from "./screens/HomeScreen";
 import PostScreen from "./screens/PostScreen";
-import NewPostScreen from "./screens/NewPostScreen";
 import NavigationService from "./shared/NavigationService";
 
 // const transitionConfig = () => {
@@ -39,8 +38,7 @@ import NavigationService from "./shared/NavigationService";
 const RootStack = createStackNavigator(
   {
     HomeScreen,
-    PostScreen,
-    NewPostScreen
+    PostScreen
   },
   {
     initialRouteName: "HomeScreen"
