@@ -1,5 +1,10 @@
 import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import {
+  BAR_SIZE,
+  APP_FONT,
+  BUTTON_FONT_SIZE
+} from "../shared/styles/Variables";
 
 export default class PostItem extends React.Component {
   render() {
@@ -28,7 +33,7 @@ PostItem.defaultProps = {
 
 const styles = StyleSheet.create({
   container: {
-    height: 60
+    height: BAR_SIZE
   },
   title: {
     flex: 1,
@@ -37,7 +42,7 @@ const styles = StyleSheet.create({
   },
   titleText: {
     color: "#000",
-    fontSize: 22,
-    fontFamily: "Nunito"
+    fontSize: BUTTON_FONT_SIZE,
+    fontFamily: APP_FONT
   }
 });

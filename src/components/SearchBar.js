@@ -1,7 +1,8 @@
 import React from "react";
 import { TextInput, StyleSheet } from "react-native";
 import { Icon } from "react-native-elements";
-import ToolBar from "../shared/ToolBar";
+import ToolBar from "./ToolBar";
+import { HEADLINE_FONT_SIZE, APP_FONT } from "../shared/styles/Variables";
 
 export default class SearchBar extends React.Component {
   render() {
@@ -36,9 +37,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff"
   },
   searchInput: {
-    height: 60,
     flex: 1,
-    fontSize: 22,
-    fontFamily: "Nunito"
+    fontSize: HEADLINE_FONT_SIZE,
+    fontFamily: APP_FONT
   }
 });

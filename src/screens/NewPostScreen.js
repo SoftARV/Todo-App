@@ -10,11 +10,17 @@ import { Icon } from "react-native-elements";
 import { connect } from "react-redux";
 import { createTodo } from "../shared/actions/TodoActions";
 import NavigationService from "../shared/NavigationService";
-import ToolBar from "../shared/ToolBar";
+import ToolBar from "../components/ToolBar";
 import FabButton from "../components/FabButton";
-import Select from "../shared/Select";
+import Select from "../components/Select";
 import DismissKeyboard from "../shared/DismissKeyboard";
 import { colorList } from "../shared/Constants";
+import {
+  BAR_SIZE,
+  APP_FONT,
+  HEADLINE_FONT_SIZE,
+  BODY_FONT_SIZE
+} from "../shared/styles/Variables";
 
 class NewPostScreen extends React.Component {
   static navigationOptions = {
@@ -97,28 +103,27 @@ const styles = StyleSheet.create({
   },
   title: {
     flex: 1,
-    fontSize: 22,
-    fontFamily: "Nunito",
+    fontSize: HEADLINE_FONT_SIZE,
+    fontFamily: APP_FONT,
     color: "#fff"
   },
   inputContainer: {
     paddingLeft: 10,
     paddingRight: 10,
     justifyContent: "center",
-    height: 60,
+    height: BAR_SIZE,
     backgroundColor: "#fff"
   },
   titleInput: {
     flex: 1,
-    fontSize: 22,
-    fontFamily: "Nunito",
+    fontSize: BODY_FONT_SIZE,
+    fontFamily: APP_FONT,
     color: "#000"
   },
   body: {
     flex: 1
   },
   button: {
-    height: 60,
     justifyContent: "center",
     alignItems: "center"
   }

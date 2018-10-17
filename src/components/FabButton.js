@@ -1,6 +1,11 @@
 import React from "react";
 import { Text, TouchableOpacity, StyleSheet, View } from "react-native";
 import { getBottomSpace } from "react-native-iphone-x-helper";
+import {
+  MAIN_BAR_SIZE,
+  APP_FONT,
+  TITLE_FONT_SIZE
+} from "../shared/styles/Variables";
 
 export default class FabButton extends React.Component {
   _renderButton(text, callback) {
@@ -40,16 +45,16 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     justifyContent: "flex-start",
-    alignItems: "center"
+    alignItems: "center",
+    height: MAIN_BAR_SIZE
   },
   button: {
     justifyContent: "center",
-    flex: 1,
-    height: 60
+    flex: 1
   },
   text: {
-    fontSize: 22,
+    fontSize: TITLE_FONT_SIZE,
     color: "#fff",
-    fontFamily: "Nunito"
+    fontFamily: APP_FONT
   }
 });

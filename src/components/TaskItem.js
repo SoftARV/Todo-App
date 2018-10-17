@@ -1,13 +1,12 @@
 import React from "react";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import {
-  View,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity
-} from "react-native";
+  BAR_SIZE,
+  APP_FONT,
+  TITLE_FONT_SIZE
+} from "../shared/styles/Variables";
 
-export default class TaskInput extends React.Component {
+export default class TaskItem extends React.Component {
   render() {
     const { id, text, isCompleted, style, callback } = this.props;
     return (
@@ -39,24 +38,20 @@ const deleteIcon = {
 const styles = StyleSheet.create({
   container: {
     paddingLeft: 10,
-    paddingRight: 10,
-    flexDirection: "row"
-  },
-  button: {
-    justifyContent: "center",
-    alignItems: "center",
-    margin: 10
+    flexDirection: "row",
+    height: BAR_SIZE
   },
   task: {
     flex: 1,
-    height: 50,
     justifyContent: "center",
     alignItems: "flex-start",
-    paddingLeft: 10
+    marginLeft: 10,
+    borderBottomWidth: 0.5,
+    borderColor: "#0000004c"
   },
   taskText: {
     color: "#000",
-    fontSize: 20,
-    fontFamily: "Nunito"
+    fontSize: TITLE_FONT_SIZE,
+    fontFamily: APP_FONT
   }
 });

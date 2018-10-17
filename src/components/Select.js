@@ -7,6 +7,11 @@ import {
   Animated,
   FlatList
 } from "react-native";
+import {
+  BAR_SIZE,
+  APP_FONT,
+  BUTTON_FONT_SIZE
+} from "../shared/styles/Variables";
 
 export default class Select extends React.Component {
   constructor(props) {
@@ -15,7 +20,7 @@ export default class Select extends React.Component {
     this.state = {
       selected: { name: props.placeholder, color: "#fff", value: "" },
       isActive: false,
-      animation: new Animated.Value(60)
+      animation: new Animated.Value(BAR_SIZE)
     };
   }
 
@@ -105,14 +110,14 @@ const styles = StyleSheet.create({
     width: "100%"
   },
   title: {
-    fontSize: 22,
-    fontFamily: "Nunito"
+    fontSize: BUTTON_FONT_SIZE,
+    fontFamily: APP_FONT
   },
   button: {
     paddingLeft: 10,
     paddingRight: 10,
     justifyContent: "center",
-    height: 60
+    height: BAR_SIZE
   },
   body: {
     height: 180

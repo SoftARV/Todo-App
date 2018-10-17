@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { removeTodo } from "../shared/actions/TodoActions";
 import PostItem from "./PostItem";
 import NavigationService from "../shared/NavigationService";
+import { BAR_SIZE, APP_FONT, BODY_FONT_SIZE } from "../shared/styles/Variables";
 
 class List extends React.Component {
   _keyExtractor = (item, index) => item.id;
@@ -74,8 +75,8 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#90a4ae",
-    fontSize: 20,
-    fontFamily: "Nunito"
+    fontSize: BODY_FONT_SIZE,
+    fontFamily: APP_FONT
   },
   rowBack: {
     alignItems: "center",
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
   deleteHiddenButton: {
     backgroundColor: "#e53935",
     width: 100,
-    height: 60,
+    height: BAR_SIZE,
     justifyContent: "center",
     alignItems: "center"
   }

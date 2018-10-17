@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import StatusBarSizeIOS from "react-native-status-bar-size";
+import { MAIN_BAR_SIZE } from "../shared/styles/Variables";
 
 export default class ToolBar extends React.Component {
   state = { currentStatusBarHeight: StatusBarSizeIOS.currentHeight };
@@ -52,6 +53,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     flexDirection: "row",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    height: MAIN_BAR_SIZE
   }
 });

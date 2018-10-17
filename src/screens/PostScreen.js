@@ -4,14 +4,13 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  TextInput,
-  FlatList
+  TextInput
 } from "react-native";
 import { Icon } from "react-native-elements";
 import { getBottomSpace } from "react-native-iphone-x-helper";
 import { connect } from "react-redux";
 import { SwipeListView } from "react-native-swipe-list-view";
-import TaskInput from "../components/TaskInput";
+import TaskItem from "../components/TaskItem";
 import {
   renameTodo,
   createTask,
@@ -19,9 +18,16 @@ import {
   removeTask
 } from "../shared/actions/TodoActions";
 import NavigationService from "../shared/NavigationService";
-import ToolBar from "../shared/ToolBar";
+import ToolBar from "../components/ToolBar";
 import FabButton from "../components/FabButton";
 import DismissKeyboard from "../shared/DismissKeyboard";
+import {
+  BAR_SIZE,
+  APP_FONT,
+  HEADLINE_FONT_SIZE,
+  TITLE_FONT_SIZE,
+  BODY_FONT_SIZE
+} from "../shared/styles/Variables";
 
 class PostScreen extends React.Component {
   static navigationOptions = {
@@ -77,7 +83,7 @@ class PostScreen extends React.Component {
   _renderTaskRow(task) {
     const { color } = this.state;
     return (
-      <TaskInput
+      <TaskItem
         style={{ backgroundColor: color }}
         callback={this._toggleTask}
         {...task.item}
@@ -150,7 +156,7 @@ class PostScreen extends React.Component {
             <TextInput
               value={text}
               onChangeText={text => this.setState({ text })}
-              style={styles.titleInput}
+              style={styles.bottomInput}
               placeholder={footerInput.placeholder}
               underlineColorAndroid={footerInput.underlineColorAndroid}
               placeholderTextColor={footerInput.placeholderTextColor}
@@ -207,8 +213,8 @@ const styles = StyleSheet.create({
   },
   emptyText: {
     color: "#0006",
-    fontSize: 20,
-    fontFamily: "Nunito"
+    fontSize: BODY_FONT_SIZE,
+    fontFamily: APP_FONT
   },
   header: {
     flexDirection: "row",
@@ -217,11 +223,16 @@ const styles = StyleSheet.create({
   },
   titleInput: {
     flex: 1,
-    height: 60,
-    fontSize: 22,
-    fontFamily: "Nunito"
+    fontSize: HEADLINE_FONT_SIZE,
+    fontFamily: APP_FONT
+  },
+  bottomInput: {
+    flex: 1,
+    fontSize: TITLE_FONT_SIZE,
+    fontFamily: APP_FONT
   },
   button: {
+    height: "100%",
     justifyContent: "center",
     alignItems: "center"
   },
@@ -235,7 +246,7 @@ const styles = StyleSheet.create({
   deleteHiddenButton: {
     backgroundColor: "#e53935",
     width: 100,
-    height: 50,
+    height: BAR_SIZE,
     justifyContent: "center",
     alignItems: "center"
   }
