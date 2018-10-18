@@ -45,8 +45,6 @@ class HomeScreen extends Component {
             style={styles.modalContainer}
             onBackButtonPress={this.closeModal}
             onBackdropPress={this.closeModal}
-            onSwipe={this.closeModal}
-            swipeDirection="down"
             isVisible={this.state.isVisible}
           >
             <NewPostScreen callback={this.closeModal} />

@@ -65,6 +65,12 @@ class NewPostScreen extends React.Component {
           </ToolBar>
           <View style={styles.body}>
             <View style={[styles.inputContainer, { backgroundColor: color }]}>
+              <Icon
+                name={editIcon.name}
+                type={editIcon.type}
+                size={editIcon.size}
+                containerStyle={styles.iconInput}
+              />
               <TextInput
                 value={this.state.name}
                 onChangeText={text => this.setState({ name: text })}
@@ -79,6 +85,15 @@ class NewPostScreen extends React.Component {
                 data={colorList}
                 onValueChange={this._colorSelected.bind(this)}
                 placeholder={"Color..."}
+                reactComponent={
+                  <Icon
+                    name={dropletIcon.name}
+                    type={dropletIcon.type}
+                    size={dropletIcon.size}
+                    color={color}
+                    containerStyle={styles.icon}
+                  />
+                }
               />
             </View>
           </View>
@@ -106,6 +121,18 @@ const xIcon = {
   size: 20
 };
 
+const editIcon = {
+  name: "edit-2",
+  type: "feather",
+  size: 20
+};
+
+const dropletIcon = {
+  name: "droplet",
+  type: "feather",
+  size: 20
+};
+
 const styles = StyleSheet.create({
   container: {
     maxHeight: 400,
@@ -121,7 +148,9 @@ const styles = StyleSheet.create({
   inputContainer: {
     paddingLeft: 10,
     paddingRight: 10,
-    justifyContent: "center",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
     height: BAR_SIZE,
     backgroundColor: "#fff"
   },
@@ -140,6 +169,9 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: 10
+  },
+  iconInput: {
+    marginRight: 5
   }
 });
 

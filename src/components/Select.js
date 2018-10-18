@@ -73,12 +73,13 @@ export default class Select extends React.Component {
   _keyExtractor = (item, index) => item.name;
 
   render() {
-    const { data } = this.props;
+    const { data, reactComponent } = this.props;
     const { container, titleContainer, title, button, body } = styles;
     return (
       <Animated.View style={[container, { height: this.state.animation }]}>
         <View style={titleContainer} onLayout={this._setMinHeight.bind(this)}>
           <TouchableOpacity style={button} onPress={this._toogle}>
+            {reactComponent}
             <Text style={[title, { color: this.state.selected.color }]}>
               {this.state.selected.name}
             </Text>
@@ -116,7 +117,9 @@ const styles = StyleSheet.create({
   button: {
     paddingLeft: 10,
     paddingRight: 10,
-    justifyContent: "center",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
     height: BAR_SIZE
   },
   body: {
