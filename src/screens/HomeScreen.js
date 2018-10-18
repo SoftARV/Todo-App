@@ -67,7 +67,8 @@ const styles = StyleSheet.create({
   }
 });
 
-function mapStateToProps({ todos }) {
+function mapStateToProps({ todo, note }) {
+  const { todos } = todo;
   return { todos };
 }
 

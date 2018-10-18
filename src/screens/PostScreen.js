@@ -266,7 +266,8 @@ const styles = StyleSheet.create({
   }
 });
 
-function mapStateToProps({ todos }) {
+function mapStateToProps({ todo }) {
+  const { todos } = todo;
   return { todos };
 }
 

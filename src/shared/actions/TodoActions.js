@@ -9,10 +9,10 @@ import {
 import IDGenerator from "../IDGenerator";
 
 export const createTodo = (name, color) => {
-  let todo = {
+  const todo = {
     id: IDGenerator(),
-    name: name,
-    color: color,
+    name,
+    color,
     tasks: []
   };
 
@@ -28,7 +28,7 @@ export const renameTodo = (id, name) => {
 };
 
 export const createTask = (id, text) => {
-  let task = {
+  const task = {
     id: IDGenerator(),
     text,
     isCompleted: false
