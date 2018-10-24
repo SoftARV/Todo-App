@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps({ todo, note }) {
   const { todos } = todo;
+  console.log(note);
   return { todos };
 }
 

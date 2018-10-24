@@ -43,7 +43,6 @@ export default class Select extends React.Component {
   };
 
   _setSelected = item => {
-    console.log(item);
     this.setState({ selected: item });
     this.props.onValueChange(item);
     this._toogle();

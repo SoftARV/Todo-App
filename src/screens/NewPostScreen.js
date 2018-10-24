@@ -9,12 +9,12 @@ import {
 import { Icon } from "react-native-elements";
 import { connect } from "react-redux";
 import { createTodo } from "../shared/actions/TodoActions";
-import NavigationService from "../shared/NavigationService";
+import { createNote } from "../shared/actions/NoteActions";
 import ToolBar from "../components/ToolBar";
 import FabButton from "../components/FabButton";
 import Select from "../components/Select";
 import DismissKeyboard from "../shared/DismissKeyboard";
-import { colorList } from "../shared/Constants";
+import { colorList, postsList } from "../shared/Constants";
 import {
   BAR_SIZE,
   APP_FONT,
@@ -32,18 +32,72 @@ class NewPostScreen extends React.Component {
     super(props);
     this.state = {
       name: "",
-      color: "#fff"
+      color: "#fff",
+      type: ""
     };
+
+    this._colorSelected = this._colorSelected.bind(this);
+    this._typeSelected = this._typeSelected.bind(this);
   }
 
   _colorSelected({ value }) {
     this.setState({ color: value });
   }
 
+  _typeSelected({ value }) {
+    this.setState({ type: value });
+  }
+
   _createPost = () => {
-    this.props.createTodo(this.state.name, this.state.color);
-    this.props.callback();
+    switch (this.state.type) {
+      case "list":
+        this.props.createTodo(this.state.name, this.state.color);
+        this.props.callback();
+        break;
+      case "note":
+        this.props.createNote(this.state.name, this.state.color);
+        this.props.callback();
+        break;
+      default:
+        // Show error
+        break;
+    }
   };
+
+  _renderIconType() {
+    switch (this.state.type) {
+      case "list":
+        return (
+          <Icon
+            name={listIcon.name}
+            type={listIcon.type}
+            size={listIcon.size}
+            color={"#fff"}
+            containerStyle={styles.icon}
+          />
+        );
+      case "note":
+        return (
+          <Icon
+            name={fileIcon.name}
+            type={fileIcon.type}
+            size={fileIcon.size}
+            color={"#fff"}
+            containerStyle={styles.icon}
+          />
+        );
+      default:
+        return (
+          <Icon
+            name={helpIcon.name}
+            type={helpIcon.type}
+            size={helpIcon.size}
+            color={"#fff"}
+            containerStyle={styles.icon}
+          />
+        );
+    }
+  }
 
   render() {
     const { color } = this.state;
@@ -83,7 +137,7 @@ class NewPostScreen extends React.Component {
             <View>
               <Select
                 data={colorList}
-                onValueChange={this._colorSelected.bind(this)}
+                onValueChange={this._colorSelected}
                 placeholder={"Color..."}
                 reactComponent={
                   <Icon
@@ -94,6 +148,14 @@ class NewPostScreen extends React.Component {
                     containerStyle={styles.icon}
                   />
                 }
+              />
+            </View>
+            <View>
+              <Select
+                data={postsList}
+                onValueChange={this._typeSelected}
+                placeholder={"Type..."}
+                reactComponent={this._renderIconType()}
               />
             </View>
           </View>
@@ -129,6 +191,24 @@ const editIcon = {
 
 const dropletIcon = {
   name: "droplet",
+  type: "feather",
+  size: 20
+};
+
+const fileIcon = {
+  name: "file-text",
+  type: "feather",
+  size: 20
+};
+
+const listIcon = {
+  name: "list",
+  type: "feather",
+  size: 20
+};
+
+const helpIcon = {
+  name: "help-circle",
   type: "feather",
   size: 20
 };
@@ -177,5 +257,5 @@ const styles = StyleSheet.create({
 
 export default connect(
   null,
-  { createTodo }
+  { createTodo, createNote }
 )(NewPostScreen);

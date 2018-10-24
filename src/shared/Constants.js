@@ -30,3 +30,16 @@ export const colorList = [
     value: "#fef2a0"
   }
 ];
+
+export const postsList = [
+  {
+    name: "List",
+    color: "#fff",
+    value: "list"
+  },
+  {
+    name: "Note",
+    color: "#fff",
+    value: "note"
+  }
+];
