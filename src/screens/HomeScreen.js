@@ -42,6 +42,7 @@ class HomeScreen extends Component {
           />
           <Modal
             avoidKeyboard
+            hideModalContentWhileAnimating
             style={styles.modalContainer}
             onBackButtonPress={this.closeModal}
             onBackdropPress={this.closeModal}
@@ -68,9 +69,7 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps({ todo, note }) {
-  const { todos } = todo;
-  console.log(note);
-  return { todos };
+  return { todos: todo };
 }
 
 export default connect(mapStateToProps)(HomeScreen);

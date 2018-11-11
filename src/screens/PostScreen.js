@@ -267,8 +267,7 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps({ todo }) {
-  const { todos } = todo;
-  return { todos };
+  return { todos: todo };
 }
 
 export default connect(
