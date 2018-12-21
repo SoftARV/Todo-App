@@ -11,8 +11,10 @@ import IDGenerator from "../IDGenerator";
 export const createTodo = (name, color) => {
   const todo = {
     id: IDGenerator(),
+    type: "list",
     name,
     color,
+    date: Date.now(),
     tasks: []
   };
 

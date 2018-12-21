@@ -4693,6 +4693,13 @@ rimraf@~2.2.6:
   version "2.2.8"
   resolved "http://registry.npmjs.org/rimraf/-/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
 
+rn-bottom-drawer@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/rn-bottom-drawer/-/rn-bottom-drawer-1.2.1.tgz#7e3b7cc15b1c4a1da33dc981428bb63b21ff8072"
+  integrity sha512-utFVe6JO5a7vpu8r4vxro+ISiF2fTRgJpJv+30NJxdp6znbVve+rS7rnG7sV0UphsAsKO3HmG6X7Z302qtGeoQ==
+  dependencies:
+    prop-types "^15.6.2"
+
 rsvp@^3.3.3:
   version "3.6.2"
   resolved "https://registry.yarnpkg.com/rsvp/-/rsvp-3.6.2.tgz#2e96491599a96cde1b515d5674a8f7a91452926a"
