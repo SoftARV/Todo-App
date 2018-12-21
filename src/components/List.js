@@ -40,8 +40,8 @@ class List extends React.Component {
   }
 
   render() {
-    const { todos } = this.props;
-    if (todos.length === 0) {
+    const { data } = this.props;
+    if (data.length === 0) {
       return (
         <View style={styles.container}>
           <Text style={styles.text}>Start by Creating a Post</Text>
@@ -52,7 +52,7 @@ class List extends React.Component {
     return (
       <SwipeListView
         useFlatList
-        data={todos}
+        data={data}
         keyExtractor={this._keyExtractor}
         renderItem={this._renderPost}
         renderHiddenItem={this._renderHiddenItem.bind(this)}
