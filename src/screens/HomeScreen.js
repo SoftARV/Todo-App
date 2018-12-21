@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
 import { connect } from "react-redux";
-import Modal from "react-native-modal";
+import BottomDrawer from "rn-bottom-drawer";
 import NewPostScreen from "./NewPostScreen";
 import SearchBar from "../components/SearchBar";
 import List from "../components/List";
 import FabButton from "../components/FabButton";
 import NavigationService from "../shared/NavigationService";
 import DismissKeyboard from "../shared/DismissKeyboard";
+import { MAIN_BAR_SIZE } from "../shared/Constants";
+
+const CONTAINER_HEIGHT = 400;
 
 class HomeScreen extends Component {
   static navigationOptions = {
@@ -15,41 +18,28 @@ class HomeScreen extends Component {
     header: null
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      isVisible: false
-    };
-
-    this.closeModal = this.closeModal.bind(this);
-  }
-
-  closeModal() {
-    this.setState({ isVisible: false });
-  }
+  _renderDrawer = () => {
+    return (
+      <View style={styles.modalContainer}>
+        <NewPostScreen />
+      </View>
+    );
+  };
 
   render() {
-    const { todos } = this.props;
+    const { todo } = this.props;
     return (
       <DismissKeyboard>
         <View style={styles.container}>
-          <List todos={todos} />
-          <SearchBar />
-          <FabButton
-            callback={() => this.setState({ isVisible: true })}
-            text={"New Post"}
-            color={"#c2185b"}
+          <List data={todo} />
+
+          <BottomDrawer
+            renderContent={this._renderDrawer}
+            containerHeight={CONTAINER_HEIGHT}
+            startUp={false}
+            downDisplay={MAIN_BAR_SIZE}
+            backgroundColor={"#1c1c1c"}
           />
-          <Modal
-            avoidKeyboard
-            hideModalContentWhileAnimating
-            style={styles.modalContainer}
-            onBackButtonPress={this.closeModal}
-            onBackdropPress={this.closeModal}
-            isVisible={this.state.isVisible}
-          >
-            <NewPostScreen callback={this.closeModal} />
-          </Modal>
         </View>
       </DismissKeyboard>
     );
@@ -62,14 +52,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#1c1c1c"
   },
   modalContainer: {
-    justifyContent: "flex-end",
-    margin: 0,
     height: 400
   }
 });
 
 function mapStateToProps({ todo, note }) {
-  return { todos: todo };
+  return { todo };
 }
 
 export default connect(mapStateToProps)(HomeScreen);
