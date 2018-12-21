@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#1c1c1c"
   },
   modalContainer: {
-    height: 400
+    height: CONTAINER_HEIGHT
   }
 });
 
