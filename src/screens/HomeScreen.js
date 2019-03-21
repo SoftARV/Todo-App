@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
 import { connect } from "react-redux";
+import Modal from "react-native-modal";
 import BottomDrawer from "rn-bottom-drawer";
 import NewPostScreen from "./NewPostScreen";
 import SearchBar from "../components/SearchBar";
@@ -18,13 +19,18 @@ class HomeScreen extends Component {
     header: null
   };
 
-  _renderDrawer = () => {
-    return (
-      <View style={styles.modalContainer}>
-        <NewPostScreen />
-      </View>
-    );
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isVisible: false
+    };
+
+    this._toogleModal = this._toogleModal.bind(this);
+  }
+
+  _toogleModal() {
+    this.setState({ isVisible: !this.state.isVisible });
+  }
 
   render() {
     const { todo } = this.props;
@@ -32,14 +38,22 @@ class HomeScreen extends Component {
       <DismissKeyboard>
         <View style={styles.container}>
           <List data={todo} />
-
-          <BottomDrawer
-            renderContent={this._renderDrawer}
-            containerHeight={CONTAINER_HEIGHT}
-            startUp={false}
-            downDisplay={MAIN_BAR_SIZE}
-            backgroundColor={"#1c1c1c"}
+          <SearchBar />
+          <FabButton
+            callback={this._toogleModal}
+            text={"New Post"}
+            color={"#c2185b"}
           />
+          <Modal
+            avoidKeyboard
+            hideModalContentWhileAnimating
+            style={styles.modalContainer}
+            onBackButtonPress={this._toogleModal}
+            onBackdropPress={this._toogleModal}
+            isVisible={this.state.isVisible}
+          >
+            <NewPostScreen callback={this._toogleModal} />
+          </Modal>
         </View>
       </DismissKeyboard>
     );
@@ -52,6 +66,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#1c1c1c"
   },
   modalContainer: {
+    justifyContent: "flex-end",
+    margin: 0,
     height: CONTAINER_HEIGHT
   }
 });
