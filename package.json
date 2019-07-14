@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "react": "16.5.0",
-    "react-native": "0.57.0",
+    "react-native": "^0.60.3",
     "react-native-elements": "^0.19.1",
     "react-native-iphone-x-helper": "^1.1.0",
     "react-native-linear-gradient": "^2.4.2",
@@ -24,8 +24,8 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.1.0",
-    "babel-jest": "23.6.0",
-    "jest": "23.6.0",
+    "babel-jest": "^24.8.0",
+    "jest": "^24.8.0",
     "metro-react-native-babel-preset": "0.45.3",
     "react-test-renderer": "16.5.0"
   },
